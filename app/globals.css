@@ -1,26 +1,389 @@
 @import "tailwindcss";
 
+/* ── Cherokee Bank CNB — Brand Design System ── */
+/* Brand: Deep Navy + Royal Gold | Manrope + Geist | Glassmorphism */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand-primary: #061B3A;
+  --brand-secondary: #0a2652;
+  --brand-accent: #D4AF37;
+  --brand-accent-hover: #c9a02f;
+  --brand-gold: #D4AF37;
+  --brand-gold-light: #f8e192;
+  --brand-danger: #EF4444;
+  --brand-warning: #F59E0B;
+  --brand-success: #10B981;
+  --brand-info: #3B82F6;
+
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8FAFC;
+  --bg-tertiary: #E6EAF0;
+  --bg-card: #FFFFFF;
+  --bg-sidebar: #061B3A;
+
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #8e9aaf;
+  --text-inverse: #FFFFFF;
+
+  --border-default: #E2E8F0;
+  --border-focus: #D4AF37;
+
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #0d1117;
+  --bg-tertiary: #161b22;
+  --bg-card: rgba(15, 15, 25, 0.6);
+  --bg-sidebar: #050810;
+
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-inverse: #061B3A;
+
+  --border-default: rgba(212, 175, 55, 0.1);
+  --border-focus: #D4AF37;
+
+  --glass-bg: rgba(10, 15, 25, 0.6);
+  --glass-border: rgba(212, 175, 55, 0.12);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-gold: var(--brand-gold);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-accent) transparent;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Manrope', var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* ── Globe Background ── */
+.globe-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: url('/ui/backgrounds/globe-night.jpg') center center / cover no-repeat;
+  opacity: 0.35;
+}
+
+.globe-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, #050810 75%);
+}
+
+/* Globe background for landing hero — positioned at bottom, full opacity */
+.globe-hero-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 65%;
+  z-index: 0;
+  pointer-events: none;
+  background: url('/ui/backgrounds/globe-night.jpg') top center / cover no-repeat;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
+}
+
+/* Globe 3D hero — right-side positioned with perspective */
+.globe-hero-3d {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 62%;
+  z-index: 1;
+  pointer-events: none;
+  background: url('/ui/backgrounds/globe-night.jpg') 65% center / cover no-repeat;
+  mask-image: linear-gradient(to right, transparent 0%, black 25%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
+}
+
+.globe-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #050810 0%, transparent 35%, transparent 80%, #050810 100%);
+}
+
+/* ── Glassmorphism System ── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 12px 40px rgba(212, 175, 55, 0.08);
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+/* ── Gold Glow Effects ── */
+.gold-glow {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+}
+
+.gold-glow-hover:hover {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.35);
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+/* ── Gradient Backgrounds ── */
+.gradient-primary {
+  background: linear-gradient(135deg, #061B3A 0%, #0a2652 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, #D4AF37 0%, #c9a02f 100%);
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, #D4AF37 0%, #f8e192 100%);
+}
+
+.gradient-mesh {
+  background:
+    radial-gradient(at 20% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+    radial-gradient(at 80% 20%, rgba(10, 38, 82, 0.15) 0%, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+}
+
+.mesh-gradient-bg {
+  background-image: radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.1) 0, transparent 50%),
+                    radial-gradient(at 100% 100%, rgba(10, 38, 82, 0.8) 0, transparent 50%);
+}
+
+.star-field {
+  background-image: radial-gradient(circle, rgba(212, 175, 55, 0.6) 1px, transparent 1px);
+  background-size: 120px 120px;
+  opacity: 0.08;
+}
+
+/* ── Animations ── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+  50% { box-shadow: 0 0 20px 4px rgba(212, 175, 55, 0.2); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes arc-dash {
+  to { stroke-dashoffset: -20; }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { r: 1.5; opacity: 0.8; }
+  50% { r: 3; opacity: 1; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { filter: blur(4px) brightness(1); opacity: 0.6; }
+  50% { filter: blur(8px) brightness(1.5); opacity: 1; }
+}
+
+@keyframes status-pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+@keyframes fly-across {
+  0% { offset-distance: 0%; opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+@keyframes flight-arc-draw {
+  0% {
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    stroke-dasharray: 300;
+    stroke-dashoffset: -300;
+    opacity: 0.2;
+  }
+}
+
+.flight-arc {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: flight-arc-draw 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+.animate-slide-in-left { animation: slideInLeft 0.4s ease-out forwards; }
+.animate-slide-in-up { animation: slideInUp 0.5s ease-out forwards; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-status-pulse { animation: status-pulse 2s infinite; }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-secondary) 50%, var(--bg-tertiary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+.flight-arc {
+  stroke-dasharray: 4 3;
+  animation: arc-dash 2s linear infinite;
+}
+
+.flight-arc-glow {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* ── Gold Button System ── */
+.btn-gold {
+  background: linear-gradient(135deg, #D4AF37 0%, #c9a02f 100%);
+  color: #061B3A;
+  font-weight: 700;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-outline-gold {
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: #D4AF37;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-gold:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: #D4AF37;
+}
+
+.gold-liquid-hover:hover {
+  background: linear-gradient(135deg, #D4AF37 0%, #f8e192 100%);
+  color: #061B3A !important;
+}
+.gold-liquid-hover:hover span {
+  color: #061B3A !important;
+}
+
+/* ── Cherokee Card ── */
+.cherokee-card {
+  background: rgba(15, 15, 25, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  border-radius: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.cherokee-card:hover {
+  border-color: rgba(212, 175, 55, 0.25);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.08);
+}
+
+/* ── Custom Scrollbar (Webkit) ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(212, 175, 55, 0.5); }
+
+/* ── Focus Ring ── */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 2px;
+}
+
+/* ── Select options dark styling ── */
+select option {
+  background: #0a1628;
+  color: #fff;
+}
+
+/* ── Number Input Hide Spinners ── */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] { -moz-appearance: textfield; }

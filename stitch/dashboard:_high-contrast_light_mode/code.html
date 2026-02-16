@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cherokee Bank CNB | High-Contrast Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#edbc1d",
+                        "background-light": "#E6EAF0",
+                        "background-dark": "#221e10",
+                        "navy-deep": "#0F172A",
+                        "gold-gradient-start": "#edbc1d",
+                        "gold-gradient-end": "#f8e192",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.05);
+        }
+        .gold-liquid-hover:hover {
+            background: linear-gradient(135deg, #edbc1d 0%, #f8e192 100%);
+            color: white !important;
+        }
+        .gold-liquid-hover:hover span {
+            color: white !important;
+        }
+        .globe-watermark {
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-navy-deep antialiased min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-72 bg-white border-r border-navy-deep/5 flex flex-col h-full z-20">
+<div class="p-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-icons-round text-white">account_balance</span>
+</div>
+<div>
+<h1 class="font-extrabold text-xl tracking-tight leading-none">CHEROKEE</h1>
+<p class="text-[10px] font-bold tracking-widest text-primary">BANK CNB</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-6 space-y-2 mt-4">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg bg-primary/10 text-primary font-bold" href="#">
+<span class="material-icons-round">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-slate-500 hover:bg-slate-50 transition-colors font-medium" href="#">
+<span class="material-icons-round">account_balance_wallet</span>
+<span>Accounts</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-slate-500 hover:bg-slate-50 transition-colors font-medium" href="#">
+<span class="material-icons-round">currency_exchange</span>
+<span>Crypto Exchange</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-slate-500 hover:bg-slate-50 transition-colors font-medium" href="#">
+<span class="material-icons-round">token</span>
+<span>Gold Reserve</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-slate-500 hover:bg-slate-50 transition-colors font-medium" href="#">
+<span class="material-icons-round">insights</span>
+<span>Market Data</span>
+</a>
+</nav>
+<div class="p-8 border-t border-navy-deep/5 space-y-4">
+<a class="flex items-center gap-4 px-4 py-2 text-slate-400 hover:text-navy-deep transition-colors text-sm font-medium" href="#">
+<span class="material-icons-round text-lg">settings</span>
+<span>Settings</span>
+</a>
+<div class="bg-primary/5 rounded-xl p-4">
+<p class="text-xs font-bold text-primary mb-1 uppercase tracking-wider">Premium Support</p>
+<p class="text-[11px] text-slate-500 mb-3 leading-relaxed">Dedicated concierge for gold-backed assets.</p>
+<button class="w-full py-2 bg-white border border-primary/20 rounded-lg text-[11px] font-bold text-primary hover:bg-primary hover:text-white transition-all">CONTACT AGENT</button>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto relative bg-background-light">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b border-navy-deep/5 px-10 py-4 flex justify-between items-center">
+<div class="flex items-center gap-6 w-1/3">
+<div class="relative w-full max-w-sm">
+<span class="material-icons-round absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-background-light border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/50 outline-none" placeholder="Search transactions or assets..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-green-50 rounded-full border border-green-100">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="text-[11px] font-bold text-green-600 uppercase">Live Reserve Node</span>
+</div>
+<button class="relative text-slate-400 hover:text-navy-deep transition-colors">
+<span class="material-icons-round">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full border-2 border-white"></span>
+</button>
+<div class="flex items-center gap-3 pl-6 border-l border-slate-100">
+<div class="text-right">
+<p class="text-xs font-bold text-navy-deep leading-none">Jameson Cherokee</p>
+<p class="text-[10px] text-slate-400 font-medium">Elite Institutional Tier</p>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary p-0.5">
+<img class="w-full h-full object-cover rounded-full" data-alt="Professional business executive profile portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD60d3QyjvyWvVk7efR-njKo644jJUPpMGd3hpSmXkU4XtnijVdDmnYjjNo1kOhI27CNqOG9nKii5fCQof1dZc5hpSZpbcI000WzVCGviWQvsoOwNSBP3w4Gb4kaevm6h47L1ko554h03LnJE1FuO820e4uI8H5fmyYFjqQCj7USo90LsbSJMq1CLlYGhl-CPs_mJt7QidurxJ3Y6TNG2OWfoeV5d4_Jj5F9_6URpxa8hos2kc1htO0RcYHsWWoiBOC4irOgUdODEI"/>
+</div>
+</div>
+</div>
+</header>
+<div class="p-10 relative">
+<!-- Background Globe Watermark -->
+<div class="absolute right-0 bottom-0 w-[600px] h-[600px] globe-watermark pointer-events-none">
+<img class="w-full h-full object-contain grayscale opacity-30" data-alt="Subtle light grey 3D globe visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_XUx2Jg6-8-QbOgq8XYhghL_mHuwDI1GJZTOCqdNzZ1t_-yZh5FfcOdKG8VlBGZRU0hTP0gYKca_9r0c9oqWJ59XXIaQlBt73MTvNkmmGsCB_PQmrEDIrGTNM87UcuBoY4Z8HpkY0bHEXBmg6pucwjClSwc4bcK_09gDbnstNyIhx5A74Z9jW6HMywzrs9EkVWD90o2zFN5_Jd_-Y6DopP4iLPsz6kEjj0QIZ_zhHZK_p_VJA9XqtL5atL2KCupgN0kbss3WTz7g"/>
+</div>
+<!-- Dashboard Content -->
+<div class="relative z-1 grid grid-cols-12 gap-8">
+<!-- Top Row: Main Balance -->
+<div class="col-span-8">
+<div class="liquid-glass rounded-3xl p-10 flex flex-col justify-between h-[320px] relative overflow-hidden">
+<div class="absolute top-0 right-0 p-12 opacity-5">
+<span class="material-icons-round text-[160px] text-primary">token</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h2 class="text-slate-500 font-bold text-sm tracking-wide uppercase mb-1">Total Portfolio Balance</h2>
+<div class="flex items-baseline gap-3">
+<h3 class="text-6xl font-extrabold text-navy-deep tracking-tight">$2,849,152.<span class="text-3xl opacity-40">45</span></h3>
+<span class="flex items-center text-green-500 font-bold text-sm bg-green-50 px-2 py-1 rounded-lg">
+<span class="material-icons-round text-sm">trending_up</span> 12.4%
+                                        </span>
+</div>
+</div>
+<div class="bg-primary/10 border border-primary/20 rounded-xl px-4 py-2 flex items-center gap-3">
+<span class="material-icons-round text-primary">verified_user</span>
+<div>
+<p class="text-[10px] font-bold text-primary uppercase leading-tight">Gold Reserve Backed</p>
+<p class="text-[12px] font-medium text-navy-deep">99.9% Physical Audit</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-6 pt-8 border-t border-navy-deep/5">
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase mb-1">Crypto Assets</p>
+<p class="text-xl font-bold text-navy-deep">$1,102,490</p>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase mb-1">Gold Bullion</p>
+<p class="text-xl font-bold text-navy-deep">742.85 OZ</p>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase mb-1">Liquid Cash</p>
+<p class="text-xl font-bold text-navy-deep">$324,100</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Top Row: Market Ticker -->
+<div class="col-span-4 space-y-6">
+<div class="bg-white rounded-3xl p-6 border border-navy-deep/5 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-bold text-navy-deep">Reserve Gold Price</h4>
+<span class="material-icons-round text-slate-300">more_horiz</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-icons-round">radar</span>
+</div>
+<div>
+<p class="text-sm font-bold text-navy-deep">XAU/USD</p>
+<p class="text-[10px] text-slate-400 font-medium">Spot Price (London)</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-navy-deep">$2,145.82</p>
+<p class="text-[10px] text-green-500 font-bold">+0.42%</p>
+</div>
+</div>
+<div class="h-16 w-full opacity-30 mt-2">
+<svg class="w-full h-full" viewbox="0 0 200 60">
+<path d="M0 50 Q 25 45, 50 52 T 100 30 T 150 40 T 200 10" fill="none" stroke="#edbc1d" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+</div>
+</div>
+<div class="bg-navy-deep rounded-3xl p-6 text-white overflow-hidden relative">
+<div class="relative z-10">
+<p class="text-[10px] font-bold text-primary tracking-widest uppercase mb-1">CNB Governance</p>
+<h4 class="text-lg font-bold mb-3">Institutional Voting Power</h4>
+<div class="flex items-center gap-4">
+<div class="flex-1 h-2 bg-white/10 rounded-full">
+<div class="w-3/4 h-full bg-primary rounded-full"></div>
+</div>
+<span class="text-xs font-bold">75%</span>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-20">
+<span class="material-icons-round text-[100px] text-white">how_to_reg</span>
+</div>
+</div>
+</div>
+<!-- Middle Row: Quick Actions -->
+<div class="col-span-12">
+<div class="grid grid-cols-5 gap-6">
+<button class="gold-liquid-hover group bg-white p-6 rounded-2xl flex flex-col items-center gap-3 border border-navy-deep/5 shadow-sm transition-all duration-300">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center transition-all">
+<span class="material-icons-round text-primary group-hover:text-white transition-all">send</span>
+</div>
+<span class="font-bold text-navy-deep text-sm group-hover:text-white">Send Assets</span>
+</button>
+<button class="gold-liquid-hover group bg-white p-6 rounded-2xl flex flex-col items-center gap-3 border border-navy-deep/5 shadow-sm transition-all duration-300">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center transition-all">
+<span class="material-icons-round text-primary group-hover:text-white transition-all">qr_code_scanner</span>
+</div>
+<span class="font-bold text-navy-deep text-sm group-hover:text-white">Receive</span>
+</button>
+<button class="gold-liquid-hover group bg-white p-6 rounded-2xl flex flex-col items-center gap-3 border border-navy-deep/5 shadow-sm transition-all duration-300">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center transition-all">
+<span class="material-icons-round text-primary group-hover:text-white transition-all">swap_horiz</span>
+</div>
+<span class="font-bold text-navy-deep text-sm group-hover:text-white">Quick Convert</span>
+</button>
+<button class="gold-liquid-hover group bg-white p-6 rounded-2xl flex flex-col items-center gap-3 border border-navy-deep/5 shadow-sm transition-all duration-300">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center transition-all">
+<span class="material-icons-round text-primary group-hover:text-white transition-all">savings</span>
+</div>
+<span class="font-bold text-navy-deep text-sm group-hover:text-white">Stake Gold</span>
+</button>
+<button class="gold-liquid-hover group bg-white p-6 rounded-2xl flex flex-col items-center gap-3 border border-navy-deep/5 shadow-sm transition-all duration-300">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center transition-all">
+<span class="material-icons-round text-primary group-hover:text-white transition-all">add_card</span>
+</div>
+<span class="font-bold text-navy-deep text-sm group-hover:text-white">Top Up</span>
+</button>
+</div>
+</div>
+<!-- Bottom Row: Transactions -->
+<div class="col-span-12">
+<div class="bg-white rounded-3xl p-8 border border-navy-deep/5 shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h4 class="text-xl font-bold text-navy-deep">Recent Transactions</h4>
+<p class="text-sm text-slate-400 font-medium">Global cross-border settlement ledger</p>
+</div>
+<button class="px-5 py-2.5 rounded-xl border border-navy-deep/5 text-sm font-bold text-navy-deep hover:bg-slate-50 transition-colors">Export Statement</button>
+</div>
+<table class="w-full">
+<thead>
+<tr class="text-left text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-navy-deep/5">
+<th class="pb-4">Transaction ID</th>
+<th class="pb-4">Asset / Type</th>
+<th class="pb-4">Destination</th>
+<th class="pb-4">Date &amp; Time</th>
+<th class="pb-4">Status</th>
+<th class="pb-4 text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-navy-deep/5">
+<tr class="group hover:bg-slate-50 transition-colors">
+<td class="py-5 font-mono text-xs text-slate-400">#CNB-8294-01X</td>
+<td class="py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-icons-round text-sm">token</span>
+</div>
+<div class="text-sm font-bold text-navy-deep">Gold Reserve Token</div>
+</div>
+</td>
+<td class="py-5 text-sm font-medium text-slate-600">Geneva Vault 04</td>
+<td class="py-5 text-sm text-slate-400 font-medium">Oct 24, 2023 • 14:20</td>
+<td class="py-5">
+<span class="px-3 py-1 bg-green-50 text-green-600 text-[10px] font-bold rounded-full border border-green-100 uppercase tracking-wider">Completed</span>
+</td>
+<td class="py-5 text-right font-bold text-navy-deep text-sm">+ 12.05 XAU</td>
+</tr>
+<tr class="group hover:bg-slate-50 transition-colors">
+<td class="py-5 font-mono text-xs text-slate-400">#CNB-7123-X92</td>
+<td class="py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600">
+<span class="material-icons-round text-sm">currency_bitcoin</span>
+</div>
+<div class="text-sm font-bold text-navy-deep">Bitcoin</div>
+</div>
+</td>
+<td class="py-5 text-sm font-medium text-slate-600">External Ledger BC88</td>
+<td class="py-5 text-sm text-slate-400 font-medium">Oct 23, 2023 • 09:45</td>
+<td class="py-5">
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full border border-primary/20 uppercase tracking-wider">Pending</span>
+</td>
+<td class="py-5 text-right font-bold text-navy-deep text-sm">- 0.452 BTC</td>
+</tr>
+<tr class="group hover:bg-slate-50 transition-colors">
+<td class="py-5 font-mono text-xs text-slate-400">#CNB-6621-00P</td>
+<td class="py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+<span class="material-icons-round text-sm">account_balance</span>
+</div>
+<div class="text-sm font-bold text-navy-deep">USD Wire</div>
+</div>
+</td>
+<td class="py-5 text-sm font-medium text-slate-600">Chase Institutional</td>
+<td class="py-5 text-sm text-slate-400 font-medium">Oct 21, 2023 • 16:12</td>
+<td class="py-5">
+<span class="px-3 py-1 bg-green-50 text-green-600 text-[10px] font-bold rounded-full border border-green-100 uppercase tracking-wider">Completed</span>
+</td>
+<td class="py-5 text-right font-bold text-navy-deep text-sm">+ $125,000.00</td>
+</tr>
+</tbody>
+</table>
+<div class="mt-8 flex justify-center">
+<button class="text-sm font-bold text-primary flex items-center gap-2 hover:gap-3 transition-all">
+                                    View Full Transaction Ledger
+                                    <span class="material-icons-round text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Map Visualization Marker (Metadata Only) -->
+<div class="hidden" data-location="Zurich, Switzerland" style=""></div>
+</body></html>

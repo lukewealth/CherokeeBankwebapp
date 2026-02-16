@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cherokee Bank CNB | Developer &amp; Merchant Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#edbc1d",
+              "background-light": "#f8f8f6",
+              "background-dark": "#0a0c10", // Deep Navy Enterprise Background
+              "navy-muted": "#161b22",
+              "navy-border": "#30363d",
+            },
+            fontFamily: {
+              "display": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(237, 188, 29, 0.1);
+        }
+        .grid-watermark {
+            background-image: linear-gradient(rgba(237, 188, 29, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(237, 188, 29, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .status-pulse {
+            box-shadow: 0 0 0 0 rgba(237, 188, 29, 0.7);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(237, 188, 29, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(237, 188, 29, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(237, 188, 29, 0); }
+        }
+        .gold-glow:hover {
+            box-shadow: 0 0 15px rgba(237, 188, 29, 0.4);
+            transition: all 0.3s ease;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0c10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #edbc1d;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen overflow-hidden flex flex-col">
+<!-- System Status Bar -->
+<header class="h-10 border-b border-primary/20 bg-background-dark flex items-center justify-between px-6 z-50">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary status-pulse"></span>
+<span class="text-[10px] uppercase tracking-widest font-bold text-primary">Mainnet: Operational</span>
+</div>
+<div class="h-4 w-px bg-navy-border"></div>
+<div class="text-[10px] uppercase tracking-widest font-medium text-slate-400">Cherokee Bank API v2.4.0</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-[10px] text-slate-400">Latency: 24ms</span>
+<button class="bg-primary/10 hover:bg-primary/20 text-primary text-[10px] font-bold px-3 py-1 rounded-full transition-all border border-primary/30 uppercase tracking-tighter">API Keys</button>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden grid-watermark">
+<!-- Sidebar Navigation -->
+<aside class="w-64 border-r border-navy-border bg-background-dark/80 flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-icons text-background-dark text-lg font-bold">account_balance</span>
+</div>
+<h1 class="font-extrabold text-sm tracking-tight text-white uppercase">Cherokee <span class="text-primary">CNB</span></h1>
+</div>
+<nav class="flex-1 overflow-y-auto px-4 pb-10 space-y-8">
+<!-- Group -->
+<div>
+<h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2 mb-3">Introduction</h3>
+<ul class="space-y-1">
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm text-primary bg-primary/10 rounded-lg font-semibold" href="#"><span class="material-icons text-sm">home</span> Welcome</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors" href="#"><span class="material-icons text-sm">lock</span> Authentication</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors" href="#"><span class="material-icons text-sm">speed</span> Rate Limits</a></li>
+</ul>
+</div>
+<!-- Group -->
+<div>
+<h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2 mb-3">Core Banking</h3>
+<ul class="space-y-1">
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors" href="#"><span class="material-icons text-sm">account_balance_wallet</span> Wallets</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors" href="#"><span class="material-icons text-sm">swap_horiz</span> Internal Transfers</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors" href="#"><span class="material-icons text-sm">public</span> SWIFT / SEPA</a></li>
+</ul>
+</div>
+<!-- Group -->
+<div>
+<h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2 mb-3">Gold Ecosystem</h3>
+<ul class="space-y-1">
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors" href="#"><span class="material-icons text-sm">toll</span> $Chero Minting</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors" href="#"><span class="material-icons text-sm">verified</span> Vault Audits</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors" href="#"><span class="material-icons text-sm">water_drop</span> Liquidity Pool</a></li>
+</ul>
+</div>
+<!-- Group -->
+<div>
+<h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2 mb-3">Merchant Tools</h3>
+<ul class="space-y-1">
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors" href="#"><span class="material-icons text-sm">shopping_cart</span> Checkout</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors" href="#"><span class="material-icons text-sm">webhook</span> Webhooks</a></li>
+</ul>
+</div>
+</nav>
+<div class="p-4 border-t border-navy-border mt-auto">
+<div class="bg-primary/5 p-3 rounded-lg border border-primary/20">
+<p class="text-[10px] text-primary font-bold mb-1">Developer Support</p>
+<p class="text-[11px] text-slate-400 leading-tight">Need help with high-volume enterprise API access?</p>
+<button class="mt-2 text-[10px] font-bold text-white uppercase flex items-center gap-1 hover:text-primary transition-colors">Contact Engineering <span class="material-icons text-[10px]">arrow_forward</span></button>
+</div>
+</div>
+</aside>
+<!-- Documentation Main Area -->
+<main class="flex-1 overflow-y-auto bg-background-dark/30 relative">
+<div class="max-w-4xl mx-auto px-12 py-16">
+<div class="mb-12">
+<span class="px-2 py-1 bg-primary/20 text-primary rounded text-[10px] font-bold uppercase tracking-widest">End-point</span>
+<h2 class="text-4xl font-extrabold text-white mt-4 mb-4">Create New Transfer</h2>
+<p class="text-slate-400 text-lg leading-relaxed">Initiate a gold-backed asset transfer across the Cherokee CNB global network. This endpoint supports internal $Chero transfers and external fiat-to-crypto bridging.</p>
+</div>
+<!-- Endpoint URL -->
+<div class="flex items-center gap-3 bg-navy-muted p-4 rounded-xl border border-navy-border mb-12">
+<span class="bg-emerald-500/10 text-emerald-500 text-xs font-bold px-3 py-1 rounded uppercase">Post</span>
+<code class="text-primary font-mono text-sm">https://api.cherokeebank.com/v1/transfers</code>
+<button class="ml-auto material-icons text-slate-500 hover:text-primary transition-colors cursor-pointer">content_copy</button>
+</div>
+<!-- Parameters Table -->
+<section class="mb-12">
+<h3 class="text-xl font-bold text-white mb-6">Request Parameters</h3>
+<div class="liquid-glass rounded-xl overflow-hidden border border-navy-border">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-white/5 border-b border-navy-border">
+<th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Field</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Type</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Required</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Description</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-navy-border/50">
+<tr>
+<td class="px-6 py-4 font-mono text-primary font-bold">amount</td>
+<td class="px-6 py-4 text-slate-400 italic">decimal</td>
+<td class="px-6 py-4"><span class="text-emerald-500 text-[10px] font-bold uppercase">Required</span></td>
+<td class="px-6 py-4 text-slate-300">The amount of $Chero or gold-equivalent to send.</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-mono text-primary font-bold">recipient_id</td>
+<td class="px-6 py-4 text-slate-400 italic">string</td>
+<td class="px-6 py-4"><span class="text-emerald-500 text-[10px] font-bold uppercase">Required</span></td>
+<td class="px-6 py-4 text-slate-300">Unique identifier for the destination vault.</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-mono text-primary font-bold">currency</td>
+<td class="px-6 py-4 text-slate-400 italic">enum</td>
+<td class="px-6 py-4"><span class="text-slate-500 text-[10px] font-bold uppercase italic">Optional</span></td>
+<td class="px-6 py-4 text-slate-300">Default is <code class="text-primary">CHERO</code>. Supports <code class="text-primary">XAU</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Info Cards -->
+<div class="grid grid-cols-2 gap-6 mb-12">
+<div class="liquid-glass p-6 rounded-xl border-l-4 border-l-primary">
+<div class="flex items-center gap-3 mb-3 text-primary">
+<span class="material-icons">security</span>
+<h4 class="font-bold text-sm uppercase">Secure Signing</h4>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed">All transfers must be signed using your RSA Private Key before submission to ensure transaction integrity.</p>
+</div>
+<div class="liquid-glass p-6 rounded-xl border-l-4 border-l-primary">
+<div class="flex items-center gap-3 mb-3 text-primary">
+<span class="material-icons">schedule</span>
+<h4 class="font-bold text-sm uppercase">Settlement Time</h4>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed">Cross-border SWIFT movements settle in T+1, while internal Chero-to-Chero transfers are near-instant.</p>
+</div>
+</div>
+<!-- API Response Section Preview -->
+<section>
+<h3 class="text-xl font-bold text-white mb-4">Response Object</h3>
+<p class="text-slate-400 mb-6">Returns a Transfer object if successful. A 403 Forbidden error is returned if your vault balance is insufficient.</p>
+</section>
+</div>
+</main>
+<!-- Code Sandbox Sidebar -->
+<aside class="w-[480px] border-l border-navy-border bg-[#05070a] flex flex-col">
+<!-- Tabs -->
+<div class="flex border-b border-navy-border h-12">
+<button class="px-6 flex items-center gap-2 border-b-2 border-primary text-primary font-bold text-xs">
+                    cURL
+                </button>
+<button class="px-6 flex items-center gap-2 text-slate-500 hover:text-white font-bold text-xs transition-colors">
+                    JSON
+                </button>
+<button class="px-6 flex items-center gap-2 text-slate-500 hover:text-white font-bold text-xs transition-colors">
+                    Node.js
+                </button>
+<div class="ml-auto flex items-center px-4">
+<button class="material-icons text-slate-500 text-lg hover:text-primary transition-colors cursor-pointer">settings</button>
+</div>
+</div>
+<!-- Editor Pane -->
+<div class="flex-1 p-6 font-mono text-sm overflow-y-auto bg-black/40">
+<div class="flex items-center justify-between mb-4">
+<span class="text-[10px] text-slate-600 uppercase font-bold">Request Example</span>
+<button class="text-primary hover:bg-primary/10 border border-primary/20 px-2 py-1 rounded text-[10px] font-bold uppercase transition-all gold-glow">
+                        Copy Snippet
+                    </button>
+</div>
+<pre class="text-slate-300 leading-relaxed"><span class="text-primary">curl</span> --request POST \
+  --url https://api.cherokeebank.com/v1/transfers \
+  --header <span class="text-emerald-500">'Authorization: Bearer <span class="text-slate-400">YOUR_API_KEY</span>'</span> \
+  --header <span class="text-emerald-500">'Content-Type: application/json'</span> \
+  --data <span class="text-primary">'{
+    "amount": "1250.00",
+    "recipient_id": "vlt_987654321",
+    "currency": "CHERO",
+    "memo": "Payment for Q3 Hardware"
+  }'</span></pre>
+<div class="mt-8 pt-8 border-t border-navy-border">
+<div class="flex items-center justify-between mb-4">
+<span class="text-[10px] text-slate-600 uppercase font-bold">Success Response</span>
+</div>
+<pre class="text-slate-400 text-xs">{
+  <span class="text-primary">"status"</span>: <span class="text-emerald-500">"success"</span>,
+  <span class="text-primary">"data"</span>: {
+    <span class="text-primary">"transfer_id"</span>: <span class="text-emerald-500">"trf_550e8400"</span>,
+    <span class="text-primary">"amount"</span>: <span class="text-emerald-500">"1250.00"</span>,
+    <span class="text-primary">"currency"</span>: <span class="text-emerald-500">"CHERO"</span>,
+    <span class="text-primary">"timestamp"</span>: <span class="text-emerald-500">"2023-11-24T14:22:01Z"</span>,
+    <span class="text-primary">"status"</span>: <span class="text-emerald-500">"pending_confirmation"</span>
+  }
+}</pre>
+</div>
+</div>
+<!-- Footer Action -->
+<div class="p-6 bg-navy-muted/50 border-t border-navy-border">
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-extrabold py-3 rounded-lg flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02] shadow-xl shadow-primary/10 group">
+<span class="material-icons text-sm">play_arrow</span>
+                    TRY IT OUT
+                    <span class="text-[10px] opacity-70">(Mainnet)</span>
+</button>
+<p class="text-[10px] text-center text-slate-500 mt-4">
+<span class="material-icons text-[10px] align-middle">info</span>
+                    This will execute a real transaction on the gold-backed ledger.
+                </p>
+</div>
+</aside>
+</div>
+</body></html>

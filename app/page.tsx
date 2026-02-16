@@ -92,8 +92,7 @@ export default function LandingPage() {
             </h1>
 
             <p className="text-base text-white/50 font-light max-w-md leading-relaxed">
-              Unbank the Globe with multi-currency banking
-              and our gold-backed $Chero token.
+              Unbank the Globe with multi-currency banking and blockchain with our utilities token.
             </p>
 
             <div className="flex flex-wrap gap-4 mt-2">

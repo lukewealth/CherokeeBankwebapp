@@ -94,8 +94,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const logout = async () => {
-    await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+    try {
+      await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+    } catch {
+      // Network error — still proceed with client-side cleanup
+    }
     setUser(null);
+    window.location.href = '/login';
   };
 
   return (

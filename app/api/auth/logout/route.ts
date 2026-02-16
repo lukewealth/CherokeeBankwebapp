@@ -7,38 +7,41 @@ import crypto from 'crypto';
 
 export async function POST(request: NextRequest) {
   try {
-    const authResult = await requireAuth(request);
-    if ('status' in authResult) return authResult;
+    // Attempt auth — but don't block logout if token is expired/missing
+    const authResult = await requireAuth(request).catch(() => null);
+    const userId = authResult && !('status' in authResult) ? authResult.userId : null;
 
-    const body = await request.json().catch(() => ({}));
-    const { refreshToken } = body;
+    if (userId) {
+      const body = await request.json().catch(() => ({}));
+      const { refreshToken } = body;
 
-    // Revoke specific refresh token if provided
-    if (refreshToken) {
-      const tokenHash = crypto.createHash('sha256').update(refreshToken).digest('hex');
-      await prisma.refreshToken.updateMany({
-        where: { tokenHash, userId: authResult.userId },
-        data: { revoked: true },
-      });
-    } else {
-      // Revoke ALL refresh tokens for this user (full logout)
-      await prisma.refreshToken.updateMany({
-        where: { userId: authResult.userId, revoked: false },
-        data: { revoked: true },
+      // Revoke specific refresh token if provided
+      if (refreshToken) {
+        const tokenHash = crypto.createHash('sha256').update(refreshToken).digest('hex');
+        await prisma.refreshToken.updateMany({
+          where: { tokenHash, userId },
+          data: { revoked: true },
+        });
+      } else {
+        // Revoke ALL refresh tokens for this user (full logout)
+        await prisma.refreshToken.updateMany({
+          where: { userId, revoked: false },
+          data: { revoked: true },
+        });
+      }
+
+      // Log security event
+      await prisma.securityEvent.create({
+        data: {
+          userId,
+          type: 'LOGOUT',
+          ipAddress: request.headers.get('x-forwarded-for') || 'unknown',
+          userAgent: request.headers.get('user-agent') || 'unknown',
+        },
       });
     }
 
-    // Log security event
-    await prisma.securityEvent.create({
-      data: {
-        userId: authResult.userId,
-        type: 'LOGOUT',
-        ipAddress: request.headers.get('x-forwarded-for') || 'unknown',
-        userAgent: request.headers.get('user-agent') || 'unknown',
-      },
-    });
-
-    // Create response
+    // Always create response and clear cookies — even if auth failed
     const response = successResponse({ message: 'Logged out successfully' });
 
     // Clear auth cookies

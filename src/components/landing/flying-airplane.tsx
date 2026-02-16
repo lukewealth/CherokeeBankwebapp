@@ -148,8 +148,8 @@ const FLIGHTS: FlightConfig[] = [
     startX: "-12%", startY: "72%",
     midX: "46%",    midY: "30%",
     endX: "112%",   endY: "16%",
-    duration: 16, delay: 0,
-    scaleStart: 0.06, scaleMid: 1, scaleEnd: 0.06,
+    duration: 16, delay: 3,
+    scaleStart: 0, scaleMid: 1, scaleEnd: 0,
     rotateStart: -35, rotateMid: -22, rotateEnd: -9,
     trailOpacity: 0.55,
     rtl: false,
@@ -161,8 +161,8 @@ const FLIGHTS: FlightConfig[] = [
     startX: "-14%", startY: "85%",
     midX: "52%",    midY: "42%",
     endX: "114%",   endY: "28%",
-    duration: 20, delay: 6,
-    scaleStart: 0.05, scaleMid: 0.75, scaleEnd: 0.05,
+    duration: 20, delay: 9,
+    scaleStart: 0, scaleMid: 0.75, scaleEnd: 0,
     rotateStart: -30, rotateMid: -22, rotateEnd: -15,
     trailOpacity: 0.4,
     rtl: false,
@@ -174,8 +174,8 @@ const FLIGHTS: FlightConfig[] = [
     startX: "114%", startY: "78%",
     midX: "48%",    midY: "36%",
     endX: "-14%",   endY: "12%",
-    duration: 18, delay: 12,
-    scaleStart: 0.05, scaleMid: 0.85, scaleEnd: 0.05,
+    duration: 18, delay: 15,
+    scaleStart: 0, scaleMid: 0.85, scaleEnd: 0,
     rotateStart: -11, rotateMid: -19, rotateEnd: -27,
     trailOpacity: 0.45,
     rtl: true,
@@ -254,9 +254,11 @@ export function FlyingAirplane() {
             position: absolute;
             width: 3.5rem;
             height: 3.5rem;
+            opacity: 0;
+            transform: scale(0);
             animation:
-              ${f.id}-move ${f.duration}s cubic-bezier(0.25, 0.1, 0.25, 1) ${f.delay}s infinite,
-              ${f.id}-glow ${f.duration / 2}s ease-in-out ${f.delay}s infinite;
+              ${f.id}-move ${f.duration}s cubic-bezier(0.25, 0.1, 0.25, 1) ${f.delay}s infinite backwards,
+              ${f.id}-glow ${f.duration / 2}s ease-in-out ${f.delay}s infinite backwards;
             z-index: 30;
             pointer-events: none;
             will-change: transform, left, top, opacity;
@@ -270,7 +272,9 @@ export function FlyingAirplane() {
             transform: translateY(-50%);
             background: ${trailGrad};
             border-radius: 1px;
-            animation: ${f.id}-trail ${f.duration}s cubic-bezier(0.25, 0.1, 0.25, 1) ${f.delay}s infinite;
+            opacity: 0;
+            width: 0;
+            animation: ${f.id}-trail ${f.duration}s cubic-bezier(0.25, 0.1, 0.25, 1) ${f.delay}s infinite backwards;
             pointer-events: none;
           }
 
@@ -283,7 +287,9 @@ export function FlyingAirplane() {
             transform: translateY(-50%);
             background: ${trailInnerGrad};
             border-radius: 1px;
-            animation: ${f.id}-trail ${f.duration}s cubic-bezier(0.25, 0.1, 0.25, 1) ${f.delay + 0.15}s infinite;
+            opacity: 0;
+            width: 0;
+            animation: ${f.id}-trail ${f.duration}s cubic-bezier(0.25, 0.1, 0.25, 1) ${f.delay + 0.15}s infinite backwards;
             pointer-events: none;
           }
         `;
@@ -303,6 +309,10 @@ export function FlyingAirplane() {
           0%, 100% { opacity: 0; transform: scale(0); }
           50% { opacity: 1; transform: scale(1); }
         }
+        .sparkle-dot {
+          opacity: 0;
+          transform: scale(0);
+        }
       `}</style>
 
       {FLIGHTS.map((flight) => (
@@ -320,27 +330,27 @@ export function FlyingAirplane() {
 
       {/* Sparkle particles scattered along flight corridors */}
       {[
-        { left: "20%", top: "52%", delay: "2s", size: 3 },
-        { left: "35%", top: "38%", delay: "4s", size: 2 },
-        { left: "55%", top: "30%", delay: "6s", size: 2.5 },
-        { left: "70%", top: "25%", delay: "8s", size: 2 },
-        { left: "42%", top: "42%", delay: "10s", size: 1.5 },
-        { left: "65%", top: "48%", delay: "12s", size: 2 },
-        { left: "30%", top: "60%", delay: "3s", size: 1.5 },
-        { left: "80%", top: "35%", delay: "7s", size: 2 },
-        { left: "48%", top: "22%", delay: "11s", size: 3 },
-        { left: "15%", top: "70%", delay: "5s", size: 1.5 },
+        { left: "20%", top: "52%", delay: "5s", size: 3 },
+        { left: "35%", top: "38%", delay: "7s", size: 2 },
+        { left: "55%", top: "30%", delay: "9s", size: 2.5 },
+        { left: "70%", top: "25%", delay: "11s", size: 2 },
+        { left: "42%", top: "42%", delay: "13s", size: 1.5 },
+        { left: "65%", top: "48%", delay: "15s", size: 2 },
+        { left: "30%", top: "60%", delay: "6s", size: 1.5 },
+        { left: "80%", top: "35%", delay: "10s", size: 2 },
+        { left: "48%", top: "22%", delay: "14s", size: 3 },
+        { left: "15%", top: "70%", delay: "8s", size: 1.5 },
       ].map((spark, i) => (
         <div
           key={`sparkle-${i}`}
-          className="absolute rounded-full pointer-events-none"
+          className="absolute rounded-full pointer-events-none sparkle-dot"
           style={{
             left: spark.left,
             top: spark.top,
             width: spark.size,
             height: spark.size,
             background: "radial-gradient(circle, #D4AF37 0%, transparent 70%)",
-            animation: `sparkle 4s ease-in-out ${spark.delay} infinite`,
+            animation: `sparkle 4s ease-in-out ${spark.delay} infinite backwards`,
             zIndex: 25,
           }}
         />

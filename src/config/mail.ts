@@ -31,7 +31,7 @@ export function getMailTransporter(): nodemailer.Transporter {
 }
 
 export const mailConfig = {
-  from: process.env.SMTP_FROM || 'Cherokee Bank <noreply@cherokeebank.com>',
+  from: process.env.SMTP_FROM || 'Cherokee Bank <Info@cherokeebank.org>',
   templates: {
     otpVerification: 'otp-verification',
     welcomeEmail: 'welcome',

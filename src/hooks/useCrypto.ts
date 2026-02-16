@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { CryptoWallet, CryptoPrice, CryptoPortfolio, CryptoCurrency } from '@/src/types/crypto';
+import { CryptoPrice, CryptoPortfolio } from '@/src/types/crypto';
+import { CryptoCurrency, CryptoWallet } from '@/src/types/wallet';
 import { useAuth } from './useAuth';
 
 interface CryptoState {
@@ -45,7 +46,7 @@ export function useCrypto() {
       // Calculate portfolio
       let totalValueUSD = 0;
       const walletsWithValue = wallets.map((wallet) => {
-        const price = prices.find((p) => p.currency === wallet.currency);
+        const price = prices.find((p) => p.symbol === wallet.currency);
         const valueUSD = price ? wallet.balance * price.priceUSD : 0;
         totalValueUSD += valueUSD;
         return { ...wallet, valueUSD, price: price! };

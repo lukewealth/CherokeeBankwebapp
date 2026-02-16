@@ -21,13 +21,13 @@ export function generateTokens(userId: string, email: string, role: UserRole): T
   const accessToken = jwt.sign(
     { userId, email, role },
     JWT_SECRET,
-    { expiresIn: accessExpiry, issuer: 'cherokee-bank', audience: 'cherokee-bank-api' }
+    { expiresIn: accessExpiry as any, issuer: 'cherokee-bank', audience: 'cherokee-bank-api' }
   );
 
   const refreshToken = jwt.sign(
     { userId, email, role, type: 'refresh' },
     JWT_REFRESH_SECRET,
-    { expiresIn: refreshExpiry, issuer: 'cherokee-bank' }
+    { expiresIn: refreshExpiry as any, issuer: 'cherokee-bank' }
   );
 
   // Parse expiry to seconds

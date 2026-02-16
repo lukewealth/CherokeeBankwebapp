@@ -94,7 +94,7 @@ const container = {
 };
 const item = {
   hidden: { y: 20, opacity: 0 },
-  show: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 280, damping: 26 } },
+  show: { y: 0, opacity: 1, transition: { type: 'spring' as const, stiffness: 280, damping: 26 } },
 };
 
 /* ═══════════════════════════════════════════════════════════════

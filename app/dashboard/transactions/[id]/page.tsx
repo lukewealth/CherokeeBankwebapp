@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Header } from '@/src/components/layout';
 import { useAuth } from '@/src/hooks/use-auth';
-import Card, { CardTitle } from '@/src/components/ui/card';
-import Badge from '@/src/components/ui/badge';
-import Button from '@/src/components/ui/button';
+import { Card, CardTitle } from '@/src/components/ui/card';
+import { Badge } from '@/src/components/ui/badge';
+import { Button } from '@/src/components/ui/button';
 import { formatCurrency, formatDate } from '@/src/utils/format';
 import { PageLoader } from '@/src/components/ui/spinner';
 
@@ -38,10 +38,10 @@ export default function TransactionDetailPage() {
   if (!tx) {
     return (
       <div>
-        <Header title="Transaction" user={user} />
+        <Header />
         <div className="p-6 text-center">
           <p className="text-[var(--text-muted)]">Transaction not found.</p>
-          <Button variant="outline" onClick={() => router.back()} className="mt-4">Go Back</Button>
+          <Button variant="secondary" onClick={() => router.back()} className="mt-4">Go Back</Button>
         </div>
       </div>
     );
@@ -51,22 +51,22 @@ export default function TransactionDetailPage() {
 
   return (
     <div>
-      <Header title="Transaction Details" user={user} />
+      <Header />
 
       <div className="p-6 max-w-2xl mx-auto space-y-6">
         {/* Amount Display */}
-        <Card glass className="text-center">
+        <Card className="text-center">
           <p className={`text-4xl font-bold ${isCredit ? 'text-emerald-500' : 'text-[var(--text-primary)]'}`}>
             {isCredit ? '+' : '-'}{formatCurrency(Math.abs(tx.amount), tx.currency)}
           </p>
           <div className="flex items-center justify-center gap-2 mt-2">
-            <Badge variant={statusVariant[tx.status] || 'default'} dot>{tx.status}</Badge>
+            <Badge variant={statusVariant[tx.status] || 'default'}>{tx.status}</Badge>
             <span className="text-sm text-[var(--text-muted)]">{tx.type.replace(/_/g, ' ')}</span>
           </div>
         </Card>
 
         {/* Details */}
-        <Card glass>
+        <Card>
           <CardTitle>Details</CardTitle>
           <div className="space-y-3 mt-4">
             {[

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Card from '@/src/components/ui/card';
+import { Card } from '@/src/components/ui/card';
 import { cn } from '@/src/utils/helpers';
 
 interface StatCardProps {
@@ -15,7 +15,7 @@ interface StatCardProps {
 
 export default function StatCard({ title, value, change, changeType = 'neutral', icon, color }: StatCardProps) {
   return (
-    <Card glass hover>
+    <Card>
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <p className="text-sm text-[var(--text-muted)] font-medium">{title}</p>

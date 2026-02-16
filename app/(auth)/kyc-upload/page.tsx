@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Button from '@/src/components/ui/button';
-import Input from '@/src/components/ui/input';
-import Select from '@/src/components/ui/select';
+import { Button } from '@/src/components/ui/button';
+import { Input } from '@/src/components/ui/input';
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/src/components/ui/select';
 
 const docTypes = [
   { value: 'PASSPORT', label: 'Passport' },
@@ -83,21 +83,34 @@ export default function KycUploadPage() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <Select
-          label="Document Type"
-          options={docTypes}
-          placeholder="Select document type"
-          value={docType}
-          onChange={(e) => setDocType(e.target.value)}
-          required
-        />
-        <Input
-          label="Document Number"
-          value={docNumber}
-          onChange={(e) => setDocNumber(e.target.value)}
-          placeholder="e.g. AB1234567"
-          required
-        />
+        <div>
+          <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">
+            Document Type
+          </label>
+          <Select value={docType || undefined} onValueChange={setDocType}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select document type" />
+            </SelectTrigger>
+            <SelectContent>
+              {docTypes.map((dt) => (
+                <SelectItem key={dt.value} value={dt.value}>
+                  {dt.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">
+            Document Number
+          </label>
+          <Input
+            value={docNumber}
+            onChange={(e) => setDocNumber(e.target.value)}
+            placeholder="e.g. AB1234567"
+            required
+          />
+        </div>
         <div>
           <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">
             Upload Document
@@ -110,8 +123,8 @@ export default function KycUploadPage() {
             required
           />
         </div>
-        <Button type="submit" loading={loading} className="w-full" size="lg">
-          Submit Document
+        <Button type="submit" disabled={loading} className="w-full" size="lg">
+          {loading ? 'Submitting...' : 'Submit Document'}
         </Button>
       </form>
     </div>

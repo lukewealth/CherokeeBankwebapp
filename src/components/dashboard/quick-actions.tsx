@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import Card from '@/src/components/ui/card';
-import Badge from '@/src/components/ui/badge';
+import { Card } from '@/src/components/ui/card';
+import { Badge } from '@/src/components/ui/badge';
 
 interface QuickAction {
   label: string;
@@ -17,7 +17,7 @@ interface QuickActionsProps {
 
 export default function QuickActions({ actions }: QuickActionsProps) {
   return (
-    <Card glass>
+    <Card>
       <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">Quick Actions</h3>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {actions.map((action) => (

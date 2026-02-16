@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Input } from "@/src/components/ui";
 import { Spinner } from "@/src/components/ui/spinner";
 import { useAuth } from "@/src/hooks/use-auth";
 
-export default function VerifyOtpPage() {
+function VerifyOtpContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get("email");
@@ -77,5 +77,13 @@ export default function VerifyOtpPage() {
         </p>
       </CardFooter>
     </Card>
+  );
+}
+
+export default function VerifyOtpPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center p-8"><Spinner className="h-8 w-8" /></div>}>
+      <VerifyOtpContent />
+    </Suspense>
   );
 }

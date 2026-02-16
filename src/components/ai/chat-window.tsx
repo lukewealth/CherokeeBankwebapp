@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import Button from '@/src/components/ui/button';
+import { Button } from '@/src/components/ui/button';
 
 interface Message {
   id: string;
@@ -120,8 +120,8 @@ export default function ChatWindow() {
             placeholder="Ask me anything about your finances..."
             className="flex-1 px-4 py-2.5 rounded-xl border border-[var(--border-default)] bg-[var(--bg-card)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--border-focus)] focus:ring-2 focus:ring-[var(--brand-accent)]/20 focus:outline-none"
           />
-          <Button type="submit" loading={loading} disabled={!input.trim()}>
-            Send
+          <Button type="submit" disabled={loading || !input.trim()}>
+            {loading ? 'Sending...' : 'Send'}
           </Button>
         </form>
       </div>

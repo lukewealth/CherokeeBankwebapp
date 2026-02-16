@@ -31,7 +31,7 @@ export interface UserAddress {
 
 export interface UserProfile extends User {
   wallets: import('./wallet').Wallet[];
-  cryptoWallets: import('./crypto').CryptoWallet[];
+  cryptoWallets: import('./wallet').CryptoWallet[];
   kycDocuments: KYCDocument[];
 }
 

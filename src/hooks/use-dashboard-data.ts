@@ -65,7 +65,7 @@ export function useCreateTransaction() {
 }
 
 export function useExchangeRate() {
-  return useApi<Record<string, number>>('/api/crypto/rate');
+  return useApi<any>('/api/crypto/rate');
 }
 
 export function useCryptoWallets() {
@@ -99,10 +99,10 @@ export function useTransactionStats(period: 'week' | 'month' | 'year' = 'month')
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetch = useCallback(async () => {
+  const fetchStats = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/transactions/stats?period=${period}`);
+      const response = await globalThis.fetch(`/api/transactions/stats?period=${period}`);
       if (!response.ok) throw new Error('Failed to fetch stats');
       const json = await response.json();
       setStats(json.data);
@@ -114,7 +114,7 @@ export function useTransactionStats(period: 'week' | 'month' | 'year' = 'month')
     }
   }, [period]);
 
-  return { stats, loading, error, fetch };
+  return { stats, loading, error, fetch: fetchStats };
 }
 
 export function useSecuritySettings() {

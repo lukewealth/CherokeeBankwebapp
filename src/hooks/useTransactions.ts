@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { Transaction, TransactionFilters, PaginatedTransactions } from '@/src/types/transaction';
+import { Transaction, TransactionFilter, PaginatedTransactions } from '@/src/types/transaction';
 import { useAuth } from './useAuth';
 import { buildQueryString } from '@/src/utils/helpers';
 
@@ -14,9 +14,9 @@ interface TransactionsState {
   error: string | null;
 }
 
-export function useTransactions(initialFilters?: TransactionFilters) {
+export function useTransactions(initialFilters?: TransactionFilter) {
   const { getToken, isAuthenticated } = useAuth();
-  const [filters, setFilters] = useState<TransactionFilters>(initialFilters || { page: 1, limit: 20 });
+  const [filters, setFilters] = useState<TransactionFilter>(initialFilters || { page: 1, limit: 20 });
   const [state, setState] = useState<TransactionsState>({
     transactions: [],
     total: 0,
@@ -26,7 +26,7 @@ export function useTransactions(initialFilters?: TransactionFilters) {
     error: null,
   });
 
-  const fetchTransactions = useCallback(async (currentFilters?: TransactionFilters) => {
+  const fetchTransactions = useCallback(async (currentFilters?: TransactionFilter) => {
     const token = getToken();
     if (!token) return;
 
@@ -67,7 +67,7 @@ export function useTransactions(initialFilters?: TransactionFilters) {
     }
   }, [isAuthenticated, fetchTransactions]);
 
-  const updateFilters = useCallback((newFilters: Partial<TransactionFilters>) => {
+  const updateFilters = useCallback((newFilters: Partial<TransactionFilter>) => {
     const updated = { ...filters, ...newFilters };
     setFilters(updated);
     fetchTransactions(updated);

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import Input from '@/src/components/ui/input';
+import { Input } from '@/src/components/ui/input';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/src/components/ui/select';
 import { formatCurrency } from '@/src/utils/format';
 
@@ -79,17 +79,18 @@ export default function AdminWalletsPage() {
           />
         </div>
         <div className="w-48">
-          <Select
-            options={[
-              { value: '', label: 'All Currencies' },
-              { value: 'USD', label: '🇺🇸 USD' },
-              { value: 'EUR', label: '🇪🇺 EUR' },
-              { value: 'GBP', label: '🇬🇧 GBP' },
-              { value: 'CHERO', label: '🏛️ ₵Chero' },
-            ]}
-            value={currencyFilter}
-            onChange={(e) => setCurrencyFilter(e.target.value)}
-          />
+          <Select value={currencyFilter || 'ALL'} onValueChange={(v) => setCurrencyFilter(v === 'ALL' ? '' : v)}>
+            <SelectTrigger>
+              <SelectValue placeholder="All Currencies" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="ALL">All Currencies</SelectItem>
+              <SelectItem value="USD">🇺🇸 USD</SelectItem>
+              <SelectItem value="EUR">🇪🇺 EUR</SelectItem>
+              <SelectItem value="GBP">🇬🇧 GBP</SelectItem>
+              <SelectItem value="CHERO">🏛️ ₵Chero</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
 

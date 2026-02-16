@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import Input from '@/src/components/ui/input';
-import Select from '@/src/components/ui/select';
-import Badge from '@/src/components/ui/badge';
+import { Input } from '@/src/components/ui/input';
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/src/components/ui/select';
+import { Badge } from '@/src/components/ui/badge';
 import { formatCurrency, formatDate } from '@/src/utils/format';
 
 interface AdminTransaction {
@@ -86,34 +86,35 @@ export default function AdminTransactionsPage() {
           />
         </div>
         <div className="w-48">
-          <Select
-            options={[
-              { value: '', label: 'All Types' },
-              { value: 'TRANSFER', label: 'Transfer' },
-              { value: 'DEPOSIT', label: 'Deposit' },
-              { value: 'WITHDRAWAL', label: 'Withdrawal' },
-              { value: 'CONVERSION', label: 'Conversion' },
-              { value: 'POS_PAYMENT', label: 'POS Payment' },
-              { value: 'CRYPTO_BUY', label: 'Crypto Buy' },
-              { value: 'CRYPTO_SELL', label: 'Crypto Sell' },
-            ]}
-            value={typeFilter}
-            onChange={(e) => setTypeFilter(e.target.value)}
-          />
+          <Select value={typeFilter || 'ALL'} onValueChange={(v) => setTypeFilter(v === 'ALL' ? '' : v)}>
+            <SelectTrigger>
+              <SelectValue placeholder="All Types" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="ALL">All Types</SelectItem>
+              <SelectItem value="TRANSFER">Transfer</SelectItem>
+              <SelectItem value="DEPOSIT">Deposit</SelectItem>
+              <SelectItem value="WITHDRAWAL">Withdrawal</SelectItem>
+              <SelectItem value="CONVERSION">Conversion</SelectItem>
+              <SelectItem value="POS_PAYMENT">POS Payment</SelectItem>
+              <SelectItem value="CRYPTO_BUY">Crypto Buy</SelectItem>
+              <SelectItem value="CRYPTO_SELL">Crypto Sell</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         <div className="w-48">
-          <Select
-            options={[
-              { value: '', label: 'All Statuses' },
-              { value: 'COMPLETED', label: 'Completed' },
-              { value: 'PENDING', label: 'Pending' },
-              { value: 'FAILED', label: 'Failed' },
-              { value: 'FLAGGED', label: 'Flagged' },
-              { value: 'HELD', label: 'Held' },
-            ]}
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-          />
+          <Select value={statusFilter || 'ALL'} onValueChange={(v) => setStatusFilter(v === 'ALL' ? '' : v)}>
+            <SelectTrigger>
+              <SelectValue placeholder="All Statuses" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="COMPLETED">Completed</SelectItem>
+              <SelectItem value="PENDING">Pending</SelectItem>
+              <SelectItem value="FAILED">Failed</SelectItem>
+              <SelectItem value="FLAGGED">Flagged</SelectItem>
+              <SelectItem value="HELD">Held</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
 

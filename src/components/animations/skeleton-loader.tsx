@@ -58,7 +58,7 @@ export function SkeletonGrid({ columns = 3, count = 6, className = '' }: { colum
   return (
     <div className={`grid grid-cols-1 md:grid-cols-${columns} gap-6 ${className}`}>
       {Array.from({ length: count }).map((_, i) => (
-        <SkeletonCard key={i} className="" style={{ animationDelay: `${i * 50}ms` } as React.CSSProperties} />
+        <SkeletonCard key={i} className="" />
       ))}
     </div>
   );

@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import Badge from '@/src/components/ui/badge';
-import { formatCurrency, formatDateTime } from '@/src/utils/format';
+import { Badge } from '@/src/components/ui/badge';
+import { formatCurrency, formatDate } from '@/src/utils/format';
 
 interface Transaction {
   id: string;
@@ -86,7 +86,7 @@ export default function TransactionTable({ transactions, onRowClick }: Transacti
                   </span>
                 </td>
                 <td className="py-3 px-4">
-                  <Badge variant={statusVariant[tx.status] || 'default'} dot>
+                  <Badge variant={statusVariant[tx.status] || 'default'}>
                     {tx.status}
                   </Badge>
                 </td>
@@ -97,7 +97,7 @@ export default function TransactionTable({ transactions, onRowClick }: Transacti
                 </td>
                 <td className="py-3 px-4 text-right">
                   <span className="text-xs text-[var(--text-muted)]">
-                    {formatDateTime(tx.createdAt)}
+                    {formatDate(tx.createdAt)}
                   </span>
                 </td>
               </tr>

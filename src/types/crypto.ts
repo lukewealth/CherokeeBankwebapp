@@ -1,5 +1,7 @@
 // Cherokee Bank - Crypto Types
 
+import type { CryptoCurrency } from './wallet';
+
 export interface CryptoPrice {
   symbol: string;
   name: string;
@@ -24,7 +26,9 @@ export interface CryptoSellInput {
 
 export interface CryptoPortfolio {
   totalValueUSD: number;
-  holdings: CryptoHolding[];
+  holdings?: CryptoHolding[];
+  wallets?: any[];
+  prices?: CryptoPrice[];
 }
 
 export interface CryptoHolding {

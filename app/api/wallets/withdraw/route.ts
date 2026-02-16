@@ -22,14 +22,14 @@ export async function POST(request: NextRequest) {
 
     return successResponse({
       transaction: {
-        id: result.id,
-        type: result.type,
-        amount: result.amount.toString(),
-        currency: result.currency,
-        status: result.status,
-        reference: result.reference,
-        description: result.description,
-        createdAt: result.createdAt,
+        id: result.transaction.id,
+        type: result.transaction.type,
+        amount: result.transaction.amount.toString(),
+        currency: result.transaction.currency,
+        status: result.transaction.status,
+        reference: result.transaction.reference,
+        description: result.transaction.description,
+        createdAt: result.transaction.createdAt,
       },
     });
   } catch (error) {

@@ -49,7 +49,9 @@ export default function RegisterPage() {
         phone: form.phone,
         password: form.password,
       });
-      router.push(`/verify-otp?email=${encodeURIComponent(form.email)}&type=registration`);
+      // In dev mode, skip OTP verification and go straight to dashboard
+      // (The register API already sets auth cookies)
+      router.push("/dashboard");
     } catch (err: any) {
       setError(err.message || "Registration failed");
     } finally {

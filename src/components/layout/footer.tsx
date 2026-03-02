@@ -67,7 +67,7 @@ export function Footer() {
             <h4 className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-3">Products</h4>
             <ul className="space-y-2">
               <li><Link href="/dashboard/wallets" className="text-[11px] text-white/25 hover:text-[#D4AF37] transition-colors">Wallets</Link></li>
-              <li><Link href="/dashboard/crypto" className="text-[11px] text-white/25 hover:text-[#D4AF37] transition-colors">Investments</Link></li>
+              <li><Link href="/dashboard/crypto" className="text-[11px] text-white/25 hover:text-[#D4AF37] transition-colors">Assets</Link></li>
               <li><Link href="/dashboard/send" className="text-[11px] text-white/25 hover:text-[#D4AF37] transition-colors">Transfers</Link></li>
               <li><Link href="/dashboard/ai" className="text-[11px] text-white/25 hover:text-[#D4AF37] transition-colors">AI Banking</Link></li>
             </ul>

@@ -3,17 +3,18 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home, Wallet, TrendingUp, Send, BarChart, Settings, Bot, Building, CreditCard, ChevronLeft, ChevronRight } from "lucide-react"
+import { Home, Wallet, TrendingUp, Send, BarChart, Settings, Bot, Building, CreditCard, PiggyBank, ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/src/utils/helpers"
 import { CherokeeBankLogo } from "./logo"
 
 const navLinks = [
   { href: "/dashboard", icon: Home, label: "Dashboard", badge: null },
   { href: "/dashboard/wallets", icon: Wallet, label: "Wallets", badge: null },
-  { href: "/dashboard/crypto", icon: TrendingUp, label: "Investments", badge: null },
+  { href: "/dashboard/crypto", icon: TrendingUp, label: "Assets", badge: null },
   { href: "/dashboard/transactions", icon: BarChart, label: "Transactions", badge: null },
   { href: "/dashboard/send", icon: Send, label: "Send Money", badge: null },
-  { href: "/dashboard/cards", icon: CreditCard, label: "Cards", badge: "New" },
+  { href: "/dashboard/savings", icon: PiggyBank, label: "Savings", badge: "New" },
+  { href: "/dashboard/cards", icon: CreditCard, label: "Cards", badge: null },
   { href: "/dashboard/merchant", icon: Building, label: "Merchant", badge: null },
   { href: "/dashboard/ai", icon: Bot, label: "AI Assistant", badge: "New" },
   { href: "/dashboard/settings", icon: Settings, label: "Settings", badge: null },

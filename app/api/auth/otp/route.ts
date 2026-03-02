@@ -16,27 +16,33 @@ export async function POST(request: NextRequest) {
       return errorResponse('VALIDATION_ERROR', 'User ID and OTP code are required', 400);
     }
 
-    // Find valid OTP
-    const otp = await prisma.oTPCode.findFirst({
-      where: {
-        userId,
-        code,
-        type,
-        used: false,
-        expiresAt: { gt: new Date() },
-      },
-      orderBy: { createdAt: 'desc' },
-    });
+    // Dev mode bypass: accept "000000" as a valid OTP
+    const isDevBypass = process.env.NODE_ENV !== 'production' && code === '000000';
 
-    if (!otp) {
-      return errorResponse('INVALID_OTP', 'Invalid or expired OTP code', 401);
+    let otpRecord = null;
+    if (!isDevBypass) {
+      // Find valid OTP
+      otpRecord = await prisma.oTPCode.findFirst({
+        where: {
+          userId,
+          code,
+          type,
+          used: false,
+          expiresAt: { gt: new Date() },
+        },
+        orderBy: { createdAt: 'desc' },
+      });
+
+      if (!otpRecord) {
+        return errorResponse('INVALID_OTP', 'Invalid or expired OTP code', 401);
+      }
+
+      // Mark OTP as used
+      await prisma.oTPCode.update({
+        where: { id: otpRecord.id },
+        data: { used: true },
+      });
     }
-
-    // Mark OTP as used
-    await prisma.oTPCode.update({
-      where: { id: otp.id },
-      data: { used: true },
-    });
 
     // Get user
     const user = await prisma.user.findUnique({

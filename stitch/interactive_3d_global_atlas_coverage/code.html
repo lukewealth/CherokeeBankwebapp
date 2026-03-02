@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cherokee Bank CNB | Global Atlas Coverage</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f4c025",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#0a0a05", // Deepening the dark for cinematic effect
+                        "glass": "rgba(255, 255, 255, 0.03)",
+                        "glass-border": "rgba(244, 192, 37, 0.2)",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background: radial-gradient(circle at center, #1a1608 0%, #0a0a05 100%);
+            overflow: hidden;
+        }
+        .liquid-glass {
+            background: rgba(15, 15, 10, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(244, 192, 37, 0.15);
+        }
+        .glow-gold {
+            box-shadow: 0 0 20px rgba(244, 192, 37, 0.3);
+        }
+        .star-field {
+            background-image: radial-gradient(circle, #f4c025 1px, transparent 1px);
+            background-size: 100px 100px;
+            opacity: 0.1;
+        }
+        .map-container {
+            mask-image: radial-gradient(circle, black 50%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="font-display text-white selection:bg-primary/30 selection:text-primary">
+<!-- Background Starfield -->
+<div class="fixed inset-0 star-field pointer-events-none"></div>
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-icons text-background-dark font-bold">account_balance</span>
+</div>
+<span class="text-xl font-extrabold tracking-tighter uppercase">Cherokee <span class="text-primary">Bank</span></span>
+</div>
+<div class="hidden md:flex items-center gap-8 text-sm font-medium text-white/70">
+<a class="hover:text-primary transition-colors" href="#">Ecosystem</a>
+<a class="hover:text-primary transition-colors" href="#">Asset Vault</a>
+<a class="hover:text-primary transition-colors" href="#">Nodes</a>
+<a class="hover:text-primary transition-colors" href="#">Governance</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-5 py-2 text-sm font-semibold border border-white/10 rounded-lg hover:bg-white/5 transition-all">
+                Login
+            </button>
+<button class="px-5 py-2 text-sm font-bold bg-primary text-background-dark rounded-lg hover:shadow-[0_0_20px_rgba(244,192,37,0.4)] transition-all">
+                Connect Wallet
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="relative w-full h-screen flex flex-col md:flex-row items-center justify-between px-6 pt-24 pb-12 overflow-hidden">
+<!-- Left Column: Vision & Header -->
+<div class="relative z-10 w-full md:w-1/3 flex flex-col gap-6 pl-4 lg:pl-12">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full w-fit">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">Live Network Active</span>
+</div>
+<h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight">
+                Global <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-primary/40">Sovereign</span> <br/>
+                Coverage
+            </h1>
+<p class="text-lg text-white/50 max-w-md leading-relaxed">
+                Experience the next evolution of digital finance. Our gold-backed ecosystem connects every major financial hub through high-speed, decentralized corridors.
+            </p>
+<!-- Global Stats Header-style widgets -->
+<div class="grid grid-cols-2 gap-4 mt-4">
+<div class="liquid-glass p-4 rounded-xl">
+<div class="text-[10px] uppercase tracking-widest text-white/40 mb-1">Total Liquidity</div>
+<div class="text-2xl font-bold text-primary">$14.2B+</div>
+</div>
+<div class="liquid-glass p-4 rounded-xl">
+<div class="text-[10px] uppercase tracking-widest text-white/40 mb-1">Active Nodes</div>
+<div class="text-2xl font-bold text-primary">24,812</div>
+</div>
+</div>
+<button class="flex items-center justify-center gap-3 w-fit mt-4 px-8 py-4 bg-primary text-background-dark font-bold rounded-xl hover:scale-105 transition-transform">
+                Explore The Ecosystem
+                <span class="material-icons">explore</span>
+</button>
+</div>
+<!-- Center: Interactive 3D Globe Mockup -->
+<div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+<div class="relative w-[120vh] h-[120vh] flex items-center justify-center opacity-80 md:opacity-100">
+<!-- Outer Glow -->
+<div class="absolute inset-0 rounded-full bg-primary/5 blur-[120px]"></div>
+<!-- The "Globe" Visual -->
+<div class="relative w-[80vh] h-[80vh] rounded-full overflow-hidden border border-white/5 shadow-[0_0_100px_rgba(0,0,0,0.8)]">
+<img class="w-full h-full object-cover mix-blend-lighten scale-110" data-alt="3D Earth at night with glowing gold lights and navy oceans" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoTD9i7psoLVGjSWO26sKuxJ8Baf7Nxa2coGkTodwGOxXWUUnwfC0_M2Pvkng-HXMDW0G2whFs3fQTVAEA7LbB05xH47I3k5nZkxoXkXWWPrs6aMcgjn--RAPILc9ujWprQ7jNWkis0aqm8qq-EmoM7KGHZM1XaL-p_E83v-KTgcONkZ6EWFt1pZWEe3mvTa2gZfQF2cdCvOQqc3mq3zCgIzrMyKpizvO6__5zKKLTdh_afFYj_85gGn_9UmFGdiP_wDi1Y2HnCl0"/>
+<!-- Simulated Transfer Arcs -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" viewbox="0 0 100 100">
+<path d="M 30 40 Q 50 20 70 40" fill="none" opacity="0.6" stroke="#f4c025" stroke-dasharray="1 1" stroke-width="0.2"></path>
+<path d="M 20 60 Q 40 40 80 50" fill="none" opacity="0.4" stroke="#f4c025" stroke-dasharray="1 1" stroke-width="0.2"></path>
+<path d="M 50 30 Q 70 50 60 80" fill="none" opacity="0.5" stroke="#f4c025" stroke-dasharray="1 1" stroke-width="0.2"></path>
+</svg>
+</div>
+<!-- Floating Info Card: Europe (Revealed on 'Hover' simulation) -->
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-12 z-20 pointer-events-auto">
+<div class="liquid-glass p-5 rounded-xl border-l-4 border-l-primary w-64 shadow-2xl animate-bounce-slow">
+<div class="flex items-center justify-between mb-3">
+<h4 class="font-bold text-sm tracking-wide">REGION: EUROPE</h4>
+<span class="material-icons text-primary text-xs">radar</span>
+</div>
+<div class="space-y-3">
+<div>
+<div class="text-[9px] uppercase tracking-tighter text-white/40">Supported Currencies</div>
+<div class="text-xs font-semibold text-white/90">EUR, GBP, CHF, CNB-GOLD</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<div class="text-[9px] uppercase tracking-tighter text-white/40">Active Nodes</div>
+<div class="text-sm font-bold text-primary">1,240</div>
+</div>
+<div class="text-[9px] bg-primary/20 text-primary px-2 py-0.5 rounded-full font-bold">99.9% UP</div>
+</div>
+</div>
+</div>
+<!-- Connection Line -->
+<div class="h-12 w-px bg-gradient-to-t from-primary to-transparent mx-auto opacity-50"></div>
+</div>
+</div>
+</div>
+<!-- Right Column: Network Activity Sidebar -->
+<div class="relative z-10 w-full md:w-80 h-full max-h-[600px] flex flex-col gap-4 pr-4 lg:pr-12">
+<div class="liquid-glass rounded-2xl flex flex-col h-full overflow-hidden border border-white/5">
+<div class="p-5 border-b border-white/5 bg-white/5">
+<h3 class="font-bold text-sm flex items-center gap-2">
+<span class="material-icons text-primary text-sm">sensors</span>
+                        Real-Time Network Activity
+                    </h3>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
+<!-- Transaction Item -->
+<div class="p-3 rounded-lg bg-white/5 border border-white/5 group hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-mono text-primary">0x7a...4f2f</span>
+<span class="text-[10px] text-white/30">Just now</span>
+</div>
+<div class="flex items-center gap-2 text-xs font-medium">
+<span>London</span>
+<span class="material-icons text-[10px] text-primary">trending_flat</span>
+<span>Dubai</span>
+</div>
+<div class="mt-2 text-[11px] font-bold text-white/70">12.50 CNB-Gold</div>
+</div>
+<!-- Transaction Item -->
+<div class="p-3 rounded-lg bg-white/5 border border-white/5 group hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-mono text-primary">0x3b...99e1</span>
+<span class="text-[10px] text-white/30">2m ago</span>
+</div>
+<div class="flex items-center gap-2 text-xs font-medium">
+<span>New York</span>
+<span class="material-icons text-[10px] text-primary">trending_flat</span>
+<span>Singapore</span>
+</div>
+<div class="mt-2 text-[11px] font-bold text-white/70">85,240 USDT</div>
+</div>
+<!-- Transaction Item -->
+<div class="p-3 rounded-lg bg-white/5 border border-white/5 group hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-mono text-primary">0xc4...12b8</span>
+<span class="text-[10px] text-white/30">5m ago</span>
+</div>
+<div class="flex items-center gap-2 text-xs font-medium">
+<span>Paris</span>
+<span class="material-icons text-[10px] text-primary">trending_flat</span>
+<span>Tokyo</span>
+</div>
+<div class="mt-2 text-[11px] font-bold text-white/70">3.22 CNB-Gold</div>
+</div>
+<!-- Transaction Item -->
+<div class="p-3 rounded-lg bg-white/5 border border-white/5 group hover:border-primary/30 transition-colors opacity-60">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-mono text-primary">0x92...ff00</span>
+<span class="text-[10px] text-white/30">8m ago</span>
+</div>
+<div class="flex items-center gap-2 text-xs font-medium">
+<span>Geneva</span>
+<span class="material-icons text-[10px] text-primary">trending_flat</span>
+<span>Riyadh</span>
+</div>
+<div class="mt-2 text-[11px] font-bold text-white/70">150,000 EUR</div>
+</div>
+</div>
+<div class="p-4 bg-primary/5 text-center">
+<a class="text-[10px] font-bold text-primary uppercase tracking-widest hover:underline" href="#">View Full Explorer</a>
+</div>
+</div>
+</div>
+</main>
+<!-- Map Coordinate Footer -->
+<footer class="fixed bottom-0 left-0 right-0 z-50 p-6 flex items-center justify-between text-[10px] tracking-[0.2em] font-medium text-white/30">
+<div class="flex gap-8">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary/40"></span>
+                EST. 1892 / REV. 2024
+            </div>
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary/40"></span>
+                PROTOCOL V4.2.1
+            </div>
+</div>
+<div class="flex gap-8 uppercase">
+<span>Lat: 35.2271° N</span>
+<span>Long: 80.8431° W</span>
+<span class="text-primary/60">Node Status: Optimized</span>
+</div>
+</footer>
+<!-- Location Background Reference for System -->
+<div data-location="Global" style="display:none"></div>
+</body></html>

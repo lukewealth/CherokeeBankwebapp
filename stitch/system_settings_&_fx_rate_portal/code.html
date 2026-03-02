@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Settings &amp; FX Rate Portal | Cherokee Bank CNB</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f4c025",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#12110a", // Deep Navy-Dark variant based on Primary Hue
+                        "surface-dark": "#1e1b10",
+                        "border-gold": "rgba(244, 192, 37, 0.2)",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .liquid-glass {
+            background: rgba(30, 27, 16, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(244, 192, 37, 0.15);
+        }
+        .gold-glow {
+            box-shadow: 0 0 15px rgba(244, 192, 37, 0.3);
+        }
+        .liquid-gold-bg {
+            background: linear-gradient(135deg, #f4c025 0%, #b88a0b 100%);
+        }
+        input:focus {
+            outline: none;
+            border-color: #f4c025 !important;
+            box-shadow: 0 0 0 2px rgba(244, 192, 37, 0.2);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1e1b10;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #f4c025;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen">
+<!-- Navigation Bar -->
+<nav class="border-b border-border-gold bg-surface-dark/50 sticky top-0 z-50 px-6 py-3 flex items-center justify-between backdrop-blur-md">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons text-background-dark font-bold">account_balance</span>
+</div>
+<div>
+<h1 class="text-lg font-bold tracking-tight text-white">Cherokee Bank <span class="text-primary">CNB</span></h1>
+<p class="text-[10px] uppercase tracking-widest text-primary/60 font-semibold">Global Admin Portal</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-xs font-medium text-primary uppercase tracking-tighter">Live Market Feed</span>
+</div>
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-icons">notifications</span>
+</button>
+<div class="flex items-center gap-3 pl-6 border-l border-white/10">
+<div class="text-right">
+<p class="text-sm font-bold">Chief Admin</p>
+<p class="text-[10px] text-slate-500">ID: CNB-8802</p>
+</div>
+<img class="w-10 h-10 rounded-full border border-primary/30 object-cover" data-alt="Profile photo of a professional banking administrator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2eQUCMuzY1QysmHLFsy3Ivz_qp16SBn2yVITXf8wUVkeNFiBeDXOH3g1kQmpjI0em8x_TjLAjRq5AYElZzDw8I567RHpmiJfKZFHo5RWUYAA3Sa0Bqn0-3PSrOUYUmobvbqbbs4wRAQ0rQHOVyko84-_P6p0IRAvZUFhSPQ7_0UN5GjR98OFnnNK2hP1NCTwe7S8W6GLCvmAAGohD9p4uDXfDVyitfV9KbTJjqql0Uj7f4J3Wwlc4UNxH7DwKKgunm8hCmO3_F0s"/>
+</div>
+</div>
+</nav>
+<main class="p-6 max-w-[1600px] mx-auto grid grid-cols-12 gap-6">
+<!-- TOP SECTION: System Health -->
+<section class="col-span-12 grid grid-cols-1 md:grid-cols-4 gap-4 mb-2">
+<div class="liquid-glass p-4 rounded-xl flex items-center justify-between group hover:border-primary/40 transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20">
+<span class="material-icons text-primary">api</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 uppercase font-bold tracking-wider">API Connectivity</p>
+<h3 class="text-xl font-bold">99.9% <span class="text-xs font-normal text-emerald-500 text-sm">Online</span></h3>
+</div>
+</div>
+<div class="h-2 w-2 rounded-full bg-primary gold-glow"></div>
+</div>
+<div class="liquid-glass p-4 rounded-xl flex items-center justify-between group hover:border-primary/40 transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-icons text-primary">hub</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 uppercase font-bold tracking-wider">Blockchain Sync</p>
+<h3 class="text-xl font-bold">#8,442,109</h3>
+</div>
+</div>
+<div class="h-2 w-2 rounded-full bg-primary gold-glow"></div>
+</div>
+<div class="liquid-glass p-4 rounded-xl flex items-center justify-between group hover:border-primary/40 transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-icons text-primary">toll</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 uppercase font-bold tracking-wider">Gold Oracle</p>
+<h3 class="text-xl font-bold">$2,342.12 <span class="text-xs text-slate-500">/oz</span></h3>
+</div>
+</div>
+<div class="h-2 w-2 rounded-full bg-primary gold-glow"></div>
+</div>
+<div class="liquid-glass p-4 rounded-xl flex items-center justify-between group hover:border-primary/40 transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-icons text-primary">security</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 uppercase font-bold tracking-wider">Security State</p>
+<h3 class="text-xl font-bold">Shield Active</h3>
+</div>
+</div>
+<div class="h-2 w-2 rounded-full bg-primary gold-glow"></div>
+</div>
+</section>
+<!-- MAIN SECTION: FX Rate Grid -->
+<section class="col-span-12 lg:col-span-8 space-y-6">
+<div class="liquid-glass rounded-xl overflow-hidden">
+<div class="p-6 border-b border-border-gold flex items-center justify-between bg-primary/5">
+<div>
+<h2 class="text-xl font-extrabold text-white">FX Rate Management</h2>
+<p class="text-sm text-slate-400">Configure real-time exchange rates and manual overrides.</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all">
+<span class="material-icons text-sm">history</span> History
+                        </button>
+<button class="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all">
+<span class="material-icons text-sm">refresh</span> Refresh All
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-white/5 text-[10px] uppercase tracking-widest text-slate-500 font-black">
+<th class="px-6 py-4">Currency Pair</th>
+<th class="px-6 py-4">Market Rate</th>
+<th class="px-6 py-4">Manual Override</th>
+<th class="px-6 py-4">Spread %</th>
+<th class="px-6 py-4">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<!-- Row 1 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full bg-slate-800 border border-white/20 flex items-center justify-center text-xs font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="United States Flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBimEnBsV8p6CGjAVJi0KAWwmkcxydVJKscXVNE8W5BQKdDIqzJYLQ3vaAzRy0ltifiAI0wyeBPgLnJHFBT6-c-iPw5avxaVr_XjJyrBLuJKpxzGDbQEzj_YZn_VsymLwZzUmIhSNcpLo7B6qxEuV5AG_G8hyKuhAsOuZHU9F6MFX6bOFH2Zuaybmk9Ul66jI7fmfnTkgEkLj_bCHdwwtNMadHX3N2ZShRkcb6-mIW4ciZZIRuY1KTYCGdhR9stXZeVt39xmRv7axY"/>
+</div>
+<div class="w-8 h-8 rounded-full bg-slate-800 border border-white/20 flex items-center justify-center text-xs font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="European Union Flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALuRd_oIHxaOrO4Hqbz5tlD6HORiGgNnszwKKB1xg7tsS5cTnTEEMYM30Ax7YyB0mIHNJ2AfkgzjC_gRjBzlL13sflGTxPLnhNbj_Duj15m733u8nYaaHoi5BHgjKK53EM6_JlRLHzAx3CWwKcpJmMYiFMt8cKRTH_ZEnfpn0Slh86rOJ5S1UfIMjbttwIysvCQ5EymxdA69CKKwugi3I2gYb0azNQ0HM0rEE6FalbnulLPeV_ay56ZebXBg2o5sjHEdokFV9X77Y"/>
+</div>
+</div>
+<div>
+<p class="font-bold text-white">USD / EUR</p>
+<p class="text-[10px] text-slate-500 font-mono">FIAT CORE</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="font-mono text-slate-300">0.92341</p>
+</td>
+<td class="px-6 py-5">
+<input class="bg-surface-dark border-white/10 rounded-lg text-sm font-mono text-primary w-28 py-1.5 focus:border-primary" type="text" value="0.92341"/>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-1 w-32">
+<div class="flex justify-between text-[10px] text-slate-500">
+<span>0.10%</span>
+<span>0.5%</span>
+</div>
+<input class="accent-primary h-1.5 bg-white/10 rounded-full appearance-none" type="range"/>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 rounded bg-emerald-500/10 text-emerald-500 text-[10px] font-bold uppercase">Auto-Sync</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full bg-primary border border-white/20 flex items-center justify-center text-xs font-bold text-background-dark">
+                                                ₿
+                                            </div>
+<div class="w-8 h-8 rounded-full bg-primary border border-white/20 flex items-center justify-center text-[10px] font-bold text-background-dark">
+                                                $C
+                                            </div>
+</div>
+<div>
+<p class="font-bold text-white">BTC / $CHERO</p>
+<p class="text-[10px] text-primary font-mono font-bold tracking-tighter">ECOSYSTEM NATIVE</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="font-mono text-slate-300">12,450.00</p>
+</td>
+<td class="px-6 py-5">
+<input class="bg-surface-dark border-primary/40 rounded-lg text-sm font-mono text-primary w-28 py-1.5 gold-glow" type="text" value="12,450.00"/>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-1 w-32">
+<div class="flex justify-between text-[10px] text-slate-500">
+<span>0.25%</span>
+<span>1.2%</span>
+</div>
+<input class="accent-primary h-1.5 bg-white/10 rounded-full appearance-none" type="range"/>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 rounded bg-amber-500/10 text-amber-500 text-[10px] font-bold uppercase">Manual Active</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full bg-slate-800 border border-white/20 flex items-center justify-center text-xs font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Gold ingot texture for commodity trading" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0nlmujP2H6av6Bj6Sgzfga7Ip-wIYUo4WvGoNKftx0kmz9hC3dc1a8A0kkgPgUVe5XffiDGXABSYCXKF_XXnF1zJH40bpH9ovmBWSepnH7ts7mnbnoWjrIMgBYBrJvJ02uaCKtcYnLZefzt364Fbe-eluMgpWcXICOMwFuNgTc_iPg1W-c549gUKi6r-p7BaYgyeAjkwJ0-VFxRhLmX3fFPXf7XgzoyjivKoJFFqYzhnlpV7YiN8lSHBOcQrVYOt9cvg_fteoEK8"/>
+</div>
+<div class="w-8 h-8 rounded-full bg-slate-800 border border-white/20 flex items-center justify-center text-xs font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="USD currency flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD8GfahTQ9pQZHxGfTlu3rBr6_4IJ-KRvUPjExD_Ip0iX_5M7v1l47dNMVUWNIbwKCFk_Srfrl_LwPL7efHwkpnAcv3wV2cj0B-m_QF8XXhNuHLz_ydINbjnkRIuF2tXJuYJCncFspoiPpGke_IEzzRWKsL-B43hzV6SN57tJDHJvFBpaNg1Wj-oCTzEX9squVif452yNFg764F_8gsG14klTt5kofv-70CFQ7H10HFRxvvldNlxPfV0fi9saukc98hUE369dI7RE"/>
+</div>
+</div>
+<div>
+<p class="font-bold text-white">XAU / USD</p>
+<p class="text-[10px] text-slate-500 font-mono">COMMODITY</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="font-mono text-slate-300">2,342.12</p>
+</td>
+<td class="px-6 py-5">
+<input class="bg-surface-dark border-white/10 rounded-lg text-sm font-mono text-primary w-28 py-1.5" type="text" value="2,342.12"/>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-1 w-32">
+<div class="flex justify-between text-[10px] text-slate-500">
+<span>0.05%</span>
+<span>0.3%</span>
+</div>
+<input class="accent-primary h-1.5 bg-white/10 rounded-full appearance-none" type="range"/>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 rounded bg-emerald-500/10 text-emerald-500 text-[10px] font-bold uppercase">Auto-Sync</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-white/[0.03] text-center border-t border-white/5">
+<button class="text-xs font-bold text-primary hover:underline uppercase tracking-widest">Load More Currency Pairs</button>
+</div>
+</div>
+<!-- Recent Audit Logs Shortcut -->
+<div class="grid grid-cols-2 gap-6">
+<div class="liquid-glass p-5 rounded-xl">
+<div class="flex items-center justify-between mb-4">
+<h4 class="font-bold flex items-center gap-2">
+<span class="material-icons text-primary">analytics</span> Volatility Overview
+                        </h4>
+</div>
+<div class="h-32 bg-white/5 rounded-lg flex items-end justify-between px-4 pb-2">
+<div class="w-3 bg-primary/20 rounded-t h-[40%]"></div>
+<div class="w-3 bg-primary/40 rounded-t h-[60%]"></div>
+<div class="w-3 bg-primary/10 rounded-t h-[30%]"></div>
+<div class="w-3 bg-primary/60 rounded-t h-[80%]"></div>
+<div class="w-3 bg-primary/30 rounded-t h-[50%]"></div>
+<div class="w-3 bg-primary/80 rounded-t h-[95%]"></div>
+<div class="w-3 bg-primary/40 rounded-t h-[65%]"></div>
+<div class="w-3 bg-primary/20 rounded-t h-[45%]"></div>
+</div>
+</div>
+<div class="liquid-glass p-5 rounded-xl flex flex-col">
+<div class="flex items-center justify-between mb-4">
+<h4 class="font-bold flex items-center gap-2">
+<span class="material-icons text-primary">assignment_turned_in</span> Audit Logs Preview
+                        </h4>
+<a class="text-[10px] text-primary underline font-bold uppercase" href="#">View All</a>
+</div>
+<div class="space-y-3 flex-1 custom-scrollbar overflow-y-auto max-h-[120px]">
+<div class="flex items-start gap-3 border-l-2 border-primary pl-3 py-1">
+<div>
+<p class="text-xs font-bold">FX Manual Override: BTC/$Chero</p>
+<p class="text-[10px] text-slate-500">2 mins ago by Admin-01</p>
+</div>
+</div>
+<div class="flex items-start gap-3 border-l-2 border-white/10 pl-3 py-1">
+<div>
+<p class="text-xs font-bold">Compliance Toggle: Asia-Pacific</p>
+<p class="text-[10px] text-slate-500">1 hour ago by System</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SIDEBAR: Global Compliance Panel -->
+<aside class="col-span-12 lg:col-span-4 space-y-6">
+<div class="liquid-glass p-6 rounded-xl">
+<div class="mb-6">
+<h2 class="text-xl font-extrabold text-white">Global Compliance</h2>
+<p class="text-sm text-slate-400">Manage regional limits and availability.</p>
+</div>
+<div class="space-y-6">
+<!-- North America -->
+<div class="p-4 rounded-lg bg-white/5 border border-white/5">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<span class="material-icons text-primary/70">public</span>
+<span class="font-bold text-sm">North America</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-[10px] text-slate-400 uppercase font-black">
+<span>Tx Limit (USD)</span>
+<span class="text-white">$100,000,000</span>
+</div>
+<input class="w-full accent-primary h-1 bg-white/10 rounded-full appearance-none" type="range"/>
+</div>
+</div>
+<!-- Europe -->
+<div class="p-4 rounded-lg bg-white/5 border border-white/5">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<span class="material-icons text-primary/70">euro</span>
+<span class="font-bold text-sm">Europe (EEA)</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-[10px] text-slate-400 uppercase font-black">
+<span>Tx Limit (EUR)</span>
+<span class="text-white">€85,000,000</span>
+</div>
+<input class="w-full accent-primary h-1 bg-white/10 rounded-full appearance-none" type="range"/>
+</div>
+</div>
+<!-- Asia-Pacific -->
+<div class="p-4 rounded-lg bg-white/5 border border-white/5">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<span class="material-icons text-primary/70">language</span>
+<span class="font-bold text-sm">Asia-Pacific</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="space-y-2 opacity-40 grayscale">
+<div class="flex justify-between items-center text-[10px] text-slate-400 uppercase font-black">
+<span>Tx Limit</span>
+<span class="text-white">$0</span>
+</div>
+<input class="w-full accent-primary h-1 bg-white/10 rounded-full appearance-none" disabled="" type="range"/>
+</div>
+</div>
+</div>
+<div class="mt-8 p-4 rounded-xl border-2 border-dashed border-white/10 text-center">
+<p class="text-xs text-slate-500 mb-3">System Risk Probability</p>
+<div class="text-2xl font-black text-emerald-500">LOW RISK</div>
+<p class="text-[10px] text-slate-400 mt-2 font-mono">Algorithm: AI-Guardian v4.2</p>
+</div>
+</div>
+<!-- Help / Map Card -->
+<div class="relative h-48 rounded-xl overflow-hidden liquid-glass group">
+<img class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-105 transition-transform duration-500" data-alt="Abstract global connectivity map" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsSOWuK18rpZEFwfdQWUPt_TkqsLUS8u9CSELhsC-w-kq8w1bnlXOVnaexplTdAZnmvv5v4OfD2MbTw-gAgS_edtTaNq6kwDBpuaefXDfrLzTuA360gU4yWKuraE3YRMckkzMzUN_Yk17HhaJIzF2MrTNJRB968qA9U-04refXacTZAs4YmZDqkiqpdDkFvqlDfs6zKbJqhD4r-RFQ_z_7P4URWfHxqUfxFfGZdsX5W8pVjeLPNn3DOj7jUxJ8iMSWOOG3kLXc0Ts"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<h5 class="font-bold text-sm">Global Distribution Node</h5>
+<p class="text-[10px] text-slate-400">Click to view real-time node cluster traffic maps.</p>
+</div>
+<div class="absolute top-4 right-4">
+<span class="material-icons text-primary">gps_fixed</span>
+</div>
+</div>
+</aside>
+</main>
+<!-- FLOATING ACTION BAR -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-4">
+<div class="liquid-glass rounded-full px-8 py-4 flex items-center justify-between shadow-2xl border-primary/30">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-xs font-bold text-slate-400 uppercase">3 Unsaved Changes</span>
+</div>
+<button class="text-xs font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest flex items-center gap-1">
+<span class="material-icons text-sm">undo</span> Discard
+                </button>
+</div>
+<div class="flex items-center gap-4">
+<a class="text-xs font-bold text-primary hover:underline uppercase tracking-widest flex items-center gap-1" href="#">
+<span class="material-icons text-sm">list_alt</span> Audit Logs
+                </a>
+<button class="liquid-gold-bg text-background-dark px-8 py-2.5 rounded-full font-black text-sm uppercase tracking-tighter hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(244,192,37,0.4)] flex items-center gap-2">
+<span class="material-icons text-lg">verified_user</span> Save Global State
+                </button>
+</div>
+</div>
+</div>
+</body></html>

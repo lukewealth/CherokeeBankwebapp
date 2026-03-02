@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Global Help Center | Cherokee Bank CNB</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f4c025",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#221e10",
+                        "navy-deep": "#0a0c10",
+                        "navy-obsidian": "#020408",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #221e10;
+        }
+        .liquid-glass {
+            background: rgba(244, 192, 37, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(244, 192, 37, 0.1);
+        }
+        .liquid-glass:hover {
+            background: rgba(244, 192, 37, 0.08);
+            border-color: rgba(244, 192, 37, 0.3);
+        }
+        .gold-glow {
+            box-shadow: 0 0 20px rgba(244, 192, 37, 0.15);
+        }
+        .gold-glow-focus:focus-within {
+            box-shadow: 0 0 30px rgba(244, 192, 37, 0.3);
+            border-color: #f4c025;
+        }
+        .connection-arcs {
+            background-image: radial-gradient(circle at 50% 50%, rgba(244, 192, 37, 0.05) 0%, transparent 70%);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .arc-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            stroke: #f4c025;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 min-h-screen font-display overflow-x-hidden">
+<!-- Background Decoration -->
+<div class="connection-arcs">
+<svg class="arc-svg" fill="none" viewbox="0 0 1440 800" xmlns="http://www.w3.org/2000/svg">
+<path d="M-100 600C200 400 500 700 800 500C1100 300 1400 500 1600 400" stroke-width="0.5"></path>
+<path d="M-50 200C300 100 600 400 900 200C1200 0 1500 200 1700 100" stroke-width="0.5"></path>
+</svg>
+</div>
+<!-- Top Status Bar -->
+<header class="relative z-10 border-b border-primary/10 bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+<div class="flex items-center space-x-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons text-background-dark text-xl font-bold">account_balance</span>
+</div>
+<span class="text-xl font-extrabold tracking-tight uppercase text-primary">Cherokee <span class="text-white">Bank</span></span>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex items-center space-x-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+<span class="text-xs font-medium text-emerald-500 uppercase tracking-widest">Global Systems Operational</span>
+</div>
+<nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">Personal</a>
+<a class="hover:text-primary transition-colors" href="#">Institutional</a>
+<a class="hover:text-primary transition-colors" href="#">Ecosystem</a>
+</nav>
+<button class="bg-primary hover:bg-primary/90 text-background-dark px-4 py-1.5 rounded-lg text-sm font-bold transition-all">
+                    LOG IN
+                </button>
+</div>
+</div>
+</header>
+<main class="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-32 grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Left Column: Main Content -->
+<div class="lg:col-span-8">
+<!-- Hero Section -->
+<section class="mb-16">
+<h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+                    How can we <span class="text-primary italic">help</span><br/>you today?
+                </h1>
+<p class="text-slate-400 text-lg mb-10 max-w-2xl">
+                    Access our premium support resources for gold-backed assets, cross-border banking, and the $Chero ecosystem.
+                </p>
+<!-- Search Component -->
+<div class="relative max-w-2xl group">
+<div class="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+<span class="material-icons text-primary/60">search</span>
+</div>
+<input class="w-full bg-primary/5 border border-primary/20 rounded-xl py-5 pl-14 pr-6 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 gold-glow-focus transition-all text-lg" placeholder="Search documentation, transaction guides, or $Chero staking..." type="text"/>
+<div class="absolute right-4 inset-y-0 flex items-center">
+<kbd class="hidden sm:inline-block px-2 py-1 text-xs font-semibold text-slate-500 bg-background-dark border border-slate-700 rounded uppercase">Ctrl K</kbd>
+</div>
+</div>
+</section>
+<!-- Knowledge Base Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="liquid-glass rounded-xl p-6 transition-all group cursor-pointer">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-icons text-primary text-2xl">verified_user</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-3">Account Security</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Manage multi-factor authentication, biometric security, and cold storage hardware key integration.
+                    </p>
+<a class="text-primary text-sm font-bold flex items-center group-hover:translate-x-1 transition-transform" href="#">
+                        Secure your assets <span class="material-icons text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+<!-- Card 2 -->
+<div class="liquid-glass rounded-xl p-6 transition-all group cursor-pointer">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-icons text-primary text-2xl">payments</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-3">Gold-Backing FAQ</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Learn about our 1:1 gold reserve ratio, real-time audit reports, and asset redemption protocols.
+                    </p>
+<a class="text-primary text-sm font-bold flex items-center group-hover:translate-x-1 transition-transform" href="#">
+                        View Audit Reports <span class="material-icons text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+<!-- Card 3 -->
+<div class="liquid-glass rounded-xl p-6 transition-all group cursor-pointer">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-icons text-primary text-2xl">swap_horizontal_circle</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-3">Transaction Guides</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Step-by-step instructions for cross-border SWIFT transfers and $Chero token swaps.
+                    </p>
+<a class="text-primary text-sm font-bold flex items-center group-hover:translate-x-1 transition-transform" href="#">
+                        Transfer guides <span class="material-icons text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+</section>
+<!-- Featured Categories -->
+<section class="mt-16">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-2xl font-bold text-white uppercase tracking-wider">Top Documentation</h2>
+<a class="text-primary text-sm font-semibold hover:underline" href="#">View All Documentation</a>
+</div>
+<div class="space-y-4">
+<div class="flex items-center p-4 bg-primary/5 border border-primary/10 rounded-lg hover:border-primary/30 transition-colors cursor-pointer group">
+<span class="material-icons text-primary mr-4">description</span>
+<div class="flex-grow">
+<h4 class="text-white font-medium">Staking $Chero: A Beginner's Yield Guide</h4>
+<p class="text-slate-500 text-xs mt-1">Updated 2 days ago • 5 min read</p>
+</div>
+<span class="material-icons text-slate-600 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<div class="flex items-center p-4 bg-primary/5 border border-primary/10 rounded-lg hover:border-primary/30 transition-colors cursor-pointer group">
+<span class="material-icons text-primary mr-4">description</span>
+<div class="flex-grow">
+<h4 class="text-white font-medium">Compliance &amp; Regulatory Whitepaper v3.0</h4>
+<p class="text-slate-500 text-xs mt-1">Updated 1 week ago • 15 min read</p>
+</div>
+<span class="material-icons text-slate-600 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<div class="flex items-center p-4 bg-primary/5 border border-primary/10 rounded-lg hover:border-primary/30 transition-colors cursor-pointer group">
+<span class="material-icons text-primary mr-4">description</span>
+<div class="flex-grow">
+<h4 class="text-white font-medium">Setting up Enterprise Multi-Sig Wallets</h4>
+<p class="text-slate-500 text-xs mt-1">Updated 3 weeks ago • 8 min read</p>
+</div>
+<span class="material-icons text-slate-600 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: AI Concierge Panel -->
+<aside class="lg:col-span-4 h-full">
+<div class="sticky top-28 bg-navy-deep/80 backdrop-blur-xl border border-primary/20 rounded-2xl flex flex-col h-[calc(100vh-140px)] overflow-hidden shadow-2xl">
+<!-- AI Header -->
+<div class="p-6 border-b border-primary/10 bg-gradient-to-r from-primary/10 to-transparent">
+<div class="flex items-center space-x-4">
+<div class="relative">
+<div class="w-14 h-14 rounded-full bg-gradient-to-tr from-primary via-yellow-200 to-primary flex items-center justify-center gold-glow animate-pulse">
+<img alt="AI Avatar" class="w-12 h-12 rounded-full border-2 border-background-dark object-cover" data-alt="Golden sphere glowing orbital digital assistant icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeTnaL41AvNpU_Znq3fCQpm9h4pML37sJfTsr2xJJPNlUQQJX4mvg-dzgVFqcAdr3qjmawgc422EeIsPOdvHM1_fftjfuxjjavizVbSRsvD4cvMZWe2W9_VGZ7TAY2a1jZKlDfhkKVsGWONsMUM9dnw_kiwMo2HtOf9i_O63MXncJDr725aynyiXwXmJ_QGdYY7shpXgBcAu0CvB4xEdhBFkxEpdl-WOSdDYc75lFtdBKb--z32Sx2dCs7-i4Qjb3oY0Wm8jXXt6o"/>
+</div>
+<div class="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 border-4 border-navy-deep rounded-full"></div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white">AI Concierge</h3>
+<p class="text-xs text-primary/70 uppercase tracking-widest font-bold">Institutional Assistant</p>
+</div>
+</div>
+</div>
+<!-- Chat Messages Area -->
+<div class="flex-grow overflow-y-auto p-6 space-y-6">
+<!-- Bot Message -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="bg-primary/10 text-slate-200 p-4 rounded-xl rounded-tl-none border border-primary/10 text-sm leading-relaxed">
+                            Welcome back, Sovereign User. I am your AI Concierge. How may I assist with your global banking operations today?
+                        </div>
+<span class="text-[10px] text-slate-500 mt-2 uppercase tracking-tight">AI • Just now</span>
+</div>
+<!-- User Message (Sample) -->
+<div class="flex flex-col items-end max-w-[85%] ml-auto">
+<div class="bg-primary text-background-dark p-4 rounded-xl rounded-tr-none font-medium text-sm">
+                            I need to track my last bullion transfer.
+                        </div>
+<span class="text-[10px] text-slate-500 mt-2 uppercase tracking-tight">You • 2 min ago</span>
+</div>
+<!-- Bot Message (Typing/Response) -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="bg-primary/10 text-slate-200 p-4 rounded-xl rounded-tl-none border border-primary/10 text-sm leading-relaxed">
+                            Accessing your vault ledger... Your transfer <span class="text-primary font-mono">#CH-99281</span> is currently in 'Assay Verification' stage in Zurich. Estimated completion: 4 hours.
+                        </div>
+<span class="text-[10px] text-slate-500 mt-2 uppercase tracking-tight">AI • 1 min ago</span>
+</div>
+</div>
+<!-- AI Quick Prompts -->
+<div class="px-6 py-4 space-y-2">
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3">Quick Actions</p>
+<div class="flex flex-wrap gap-2">
+<button class="text-xs font-semibold py-2 px-4 bg-background-dark border border-primary/20 rounded-full text-slate-300 hover:border-primary hover:text-primary transition-colors">
+                            Track my transfer
+                        </button>
+<button class="text-xs font-semibold py-2 px-4 bg-background-dark border border-primary/20 rounded-full text-slate-300 hover:border-primary hover:text-primary transition-colors">
+                            How do I stake $Chero?
+                        </button>
+<button class="text-xs font-semibold py-2 px-4 bg-background-dark border border-primary/20 rounded-full text-slate-300 hover:border-primary hover:text-primary transition-colors">
+                            Current gold spot price
+                        </button>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-6 border-t border-primary/10 bg-navy-obsidian">
+<div class="relative">
+<input class="w-full bg-background-dark border border-primary/10 rounded-xl py-4 pl-4 pr-14 text-sm text-white focus:ring-1 focus:ring-primary focus:border-primary outline-none" placeholder="Type your message..." type="text"/>
+<button class="absolute right-2 top-2 bottom-2 w-10 h-10 bg-primary text-background-dark rounded-lg flex items-center justify-center hover:scale-95 transition-transform">
+<span class="material-icons text-xl font-bold">send</span>
+</button>
+</div>
+<p class="text-[10px] text-center text-slate-600 mt-4">
+                        Powered by Cherokee Neural Core • Enterprise Grade Privacy
+                    </p>
+</div>
+</div>
+</aside>
+</main>
+<!-- Global Footer -->
+<footer class="relative z-10 border-t border-primary/10 py-12 bg-background-dark/50">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm">
+<div class="flex items-center space-x-6 mb-6 md:mb-0">
+<span class="text-slate-500">© 2024 Cherokee Bank CNB. All rights reserved.</span>
+<a class="text-slate-400 hover:text-primary" href="#">Privacy Policy</a>
+<a class="text-slate-400 hover:text-primary" href="#">Terms of Service</a>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex items-center text-primary">
+<span class="material-icons text-lg mr-2">public</span>
+<span class="font-bold">Global Presence</span>
+</div>
+<div class="h-4 w-[1px] bg-slate-800"></div>
+<div class="flex space-x-4">
+<span class="text-slate-500 font-mono">XAU/USD: $2,342.10</span>
+<span class="text-emerald-500 font-mono">+1.2%</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

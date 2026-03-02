@@ -1,0 +1,546 @@
+// Cherokee Bank - Full Production Prisma Schema
+// PostgreSQL 15+ with all models for banking platform
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==================== ENUMS ====================
+
+enum UserRole {
+  USER
+  ADMIN
+  SUPERADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  FROZEN
+  SUSPENDED
+  PENDING
+}
+
+enum KYCStatus {
+  NOT_SUBMITTED
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+enum FiatCurrency {
+  USD
+  EUR
+  GBP
+  CHERO
+}
+
+enum CryptoCurrency {
+  BTC
+  ETH
+  USDT
+}
+
+enum WalletStatus {
+  ACTIVE
+  FROZEN
+  CLOSED
+}
+
+enum TransactionType {
+  TRANSFER
+  DEPOSIT
+  WITHDRAWAL
+  CONVERSION
+  POS_PAYMENT
+  CRYPTO_BUY
+  CRYPTO_SELL
+  FEE
+  ADJUSTMENT
+}
+
+enum TransactionStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  FLAGGED
+  REVERSED
+  CANCELLED
+}
+
+enum KYCDocType {
+  ID
+  PASSPORT
+  UTILITY_BILL
+  SELFIE
+  PROOF_OF_ADDRESS
+}
+
+enum KYCDocStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+enum MerchantStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  CLOSED
+}
+
+enum DisputeStatus {
+  OPEN
+  UNDER_REVIEW
+  RESOLVED
+  REJECTED
+}
+
+enum FraudReportStatus {
+  OPEN
+  REVIEWED
+  DISMISSED
+  ESCALATED
+}
+
+enum SecurityEventType {
+  LOGIN
+  LOGOUT
+  PASSWORD_CHANGE
+  TWO_FACTOR_TOGGLE
+  ACCOUNT_FROZEN
+  ACCOUNT_UNFROZEN
+  KYC_SUBMITTED
+  KYC_REVIEWED
+  FAILED_LOGIN
+  API_KEY_CREATED
+  API_KEY_REVOKED
+}
+
+enum NotificationType {
+  TRANSACTION
+  SECURITY
+  KYC
+  SYSTEM
+  PROMOTION
+  FRAUD_ALERT
+}
+
+enum CardType {
+  VIRTUAL
+  PHYSICAL
+}
+
+enum CardUsage {
+  SINGLE_USE
+  MULTI_USE
+}
+
+enum CardStatus {
+  ACTIVE
+  FROZEN
+  EXPIRED
+  CANCELLED
+}
+
+// ==================== MODELS ====================
+
+model User {
+  id                String      @id @default(uuid())
+  email             String      @unique
+  phone             String?     @unique
+  passwordHash      String
+  firstName         String
+  lastName          String
+  role              UserRole    @default(USER)
+  status            UserStatus  @default(PENDING)
+  kycStatus         KYCStatus   @default(NOT_SUBMITTED)
+  
+  twoFactorEnabled  Boolean     @default(false)
+  twoFactorSecret   String?
+  
+  avatarUrl         String?
+  dateOfBirth       DateTime?
+  street            String?
+  city              String?
+  state             String?
+  country           String?
+  postalCode        String?
+  
+  lastLoginAt       DateTime?
+  lastLoginIp       String?
+  failedLoginCount  Int         @default(0)
+  lockedUntil       DateTime?
+  
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+  
+  wallets           Wallet[]
+  cryptoWallets     CryptoWallet[]
+  sentTransactions  Transaction[] @relation("SenderTransactions")
+  kycDocuments      KYCDocument[]
+  merchant          Merchant?
+  securityEvents    SecurityEvent[]
+  notifications     Notification[]
+  auditLogsAsActor  AuditLog[]    @relation("AuditActor")
+  fraudReviews      FraudReport[] @relation("FraudReviewer")
+  kycReviews        KYCDocument[] @relation("KYCReviewer")
+  otpCodes          OTPCode[]
+  apiKeys           ApiKey[]
+  refreshTokens     RefreshToken[]
+  virtualCards      VirtualCard[]
+  
+  @@index([email])
+  @@index([phone])
+  @@index([status])
+  @@index([role])
+  @@index([kycStatus])
+  @@index([createdAt])
+}
+
+model Wallet {
+  id               String        @id @default(uuid())
+  userId           String
+  currency         FiatCurrency
+  balance          Decimal       @default(0) @db.Decimal(20, 8)
+  availableBalance Decimal       @default(0) @db.Decimal(20, 8)
+  isDefault        Boolean       @default(false)
+  status           WalletStatus  @default(ACTIVE)
+  dailyLimit       Decimal       @default(10000) @db.Decimal(20, 2)
+  monthlyLimit     Decimal       @default(100000) @db.Decimal(20, 2)
+  
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  
+  user                User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  outgoingTransactions Transaction[] @relation("FromWallet")
+  incomingTransactions Transaction[] @relation("ToWallet")
+  merchantSettlement   Merchant?     @relation("SettlementWallet")
+  ledgerEntries        LedgerEntry[]
+  
+  @@unique([userId, currency])
+  @@index([userId])
+  @@index([currency])
+  @@index([status])
+}
+
+model CryptoWallet {
+  id                  String         @id @default(uuid())
+  userId              String
+  currency            CryptoCurrency
+  balance             Decimal        @default(0) @db.Decimal(30, 18)
+  address             String         @unique
+  privateKeyEncrypted String?
+  status              WalletStatus   @default(ACTIVE)
+  
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+  
+  user                User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, currency])
+  @@index([userId])
+  @@index([address])
+}
+
+model Transaction {
+  id              String            @id @default(uuid())
+  fromWalletId    String?
+  toWalletId      String?
+  senderId        String?
+  type            TransactionType
+  amount          Decimal           @db.Decimal(20, 8)
+  fee             Decimal           @default(0) @db.Decimal(20, 8)
+  currency        String
+  status          TransactionStatus @default(PENDING)
+  reference       String            @unique @default(uuid())
+  description     String?
+  blockchainTxHash String?
+  riskScore       Float?
+  
+  exchangeRate    Decimal?          @db.Decimal(20, 8)
+  convertedAmount Decimal?          @db.Decimal(20, 8)
+  targetCurrency  String?
+  
+  metadata        Json?
+  
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  
+  fromWallet      Wallet?           @relation("FromWallet", fields: [fromWalletId], references: [id])
+  toWallet        Wallet?           @relation("ToWallet", fields: [toWalletId], references: [id])
+  sender          User?             @relation("SenderTransactions", fields: [senderId], references: [id])
+  fraudReport     FraudReport?
+  dispute         Dispute?
+  ledgerEntries   LedgerEntry[]
+  
+  @@index([fromWalletId])
+  @@index([toWalletId])
+  @@index([senderId])
+  @@index([type])
+  @@index([status])
+  @@index([currency])
+  @@index([createdAt])
+  @@index([reference])
+  @@index([riskScore])
+}
+
+model LedgerEntry {
+  id            String   @id @default(uuid())
+  transactionId String
+  walletId      String
+  amount        Decimal  @db.Decimal(20, 8)
+  balanceAfter  Decimal  @db.Decimal(20, 8)
+  description   String?
+  
+  createdAt     DateTime @default(now())
+  
+  transaction   Transaction @relation(fields: [transactionId], references: [id])
+  wallet        Wallet      @relation(fields: [walletId], references: [id])
+  
+  @@index([transactionId])
+  @@index([walletId])
+  @@index([createdAt])
+}
+
+model KYCDocument {
+  id          String       @id @default(uuid())
+  userId      String
+  type        KYCDocType
+  fileUrl     String
+  fileName    String
+  fileSize    Int
+  mimeType    String
+  status      KYCDocStatus @default(PENDING)
+  reviewedBy  String?
+  reviewNotes String?
+  reviewedAt  DateTime?
+  
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reviewer    User?        @relation("KYCReviewer", fields: [reviewedBy], references: [id])
+  
+  @@index([userId])
+  @@index([status])
+  @@index([type])
+}
+
+model Merchant {
+  id                 String         @id @default(uuid())
+  userId             String         @unique
+  businessName       String
+  businessType       String
+  posId              String         @unique @default(uuid())
+  settlementWalletId String         @unique
+  status             MerchantStatus @default(PENDING)
+  apiKey             String?        @unique
+  webhookUrl         String?
+  
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  
+  user               User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  settlementWallet   Wallet         @relation("SettlementWallet", fields: [settlementWalletId], references: [id])
+  disputes           Dispute[]
+  
+  @@index([posId])
+  @@index([status])
+}
+
+model Dispute {
+  id            String        @id @default(uuid())
+  transactionId String        @unique
+  merchantId    String
+  customerId    String
+  reason        String
+  status        DisputeStatus @default(OPEN)
+  resolution    String?
+  amount        Decimal       @db.Decimal(20, 8)
+  
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  resolvedAt    DateTime?
+  
+  transaction   Transaction   @relation(fields: [transactionId], references: [id])
+  merchant      Merchant      @relation(fields: [merchantId], references: [id])
+  
+  @@index([merchantId])
+  @@index([status])
+}
+
+model FraudReport {
+  id            String            @id @default(uuid())
+  transactionId String            @unique
+  riskScore     Float
+  riskLevel     String
+  flags         Json
+  analysis      String?
+  status        FraudReportStatus @default(OPEN)
+  reviewedBy    String?
+  reviewNotes   String?
+  reviewedAt    DateTime?
+  
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  
+  transaction   Transaction       @relation(fields: [transactionId], references: [id])
+  reviewer      User?             @relation("FraudReviewer", fields: [reviewedBy], references: [id])
+  
+  @@index([status])
+  @@index([riskScore])
+  @@index([riskLevel])
+  @@index([createdAt])
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  actorId    String
+  action     String
+  targetType String
+  targetId   String
+  metadata   Json?
+  ipAddress  String
+  userAgent  String?
+  
+  createdAt  DateTime @default(now())
+  
+  actor      User     @relation("AuditActor", fields: [actorId], references: [id])
+  
+  @@index([actorId])
+  @@index([action])
+  @@index([targetType, targetId])
+  @@index([createdAt])
+}
+
+model SecurityEvent {
+  id        String            @id @default(uuid())
+  userId    String
+  type      SecurityEventType
+  ipAddress String
+  userAgent String?
+  metadata  Json?
+  
+  createdAt DateTime          @default(now())
+  
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([type])
+  @@index([createdAt])
+}
+
+model OTPCode {
+  id        String   @id @default(uuid())
+  userId    String
+  code      String
+  type      String
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  
+  createdAt DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId, type])
+  @@index([expiresAt])
+}
+
+model Notification {
+  id       String           @id @default(uuid())
+  userId   String
+  title    String
+  body     String
+  type     NotificationType
+  read     Boolean          @default(false)
+  metadata Json?
+  
+  createdAt DateTime        @default(now())
+  
+  user     User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId, read])
+  @@index([createdAt])
+}
+
+model ApiKey {
+  id        String   @id @default(uuid())
+  userId    String
+  name      String
+  keyHash   String   @unique
+  prefix    String
+  scopes    Json
+  lastUsed  DateTime?
+  expiresAt DateTime?
+  revoked   Boolean  @default(false)
+  
+  createdAt DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([keyHash])
+  @@index([userId])
+}
+
+model RefreshToken {
+  id         String   @id @default(uuid())
+  userId     String
+  tokenHash  String   @unique
+  deviceInfo String?
+  ipAddress  String?
+  expiresAt  DateTime
+  revoked    Boolean  @default(false)
+  
+  createdAt  DateTime @default(now())
+  
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([tokenHash])
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model SystemConfig {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  type      String   @default("string")
+  category  String   @default("general")
+  
+  updatedAt DateTime @updatedAt
+  
+  @@index([category])
+}
+
+model VirtualCard {
+  id             String       @id @default(uuid())
+  userId         String
+  cardName       String
+  last4          String       @db.VarChar(4)
+  expiryMonth    Int
+  expiryYear     Int
+  cvvHash        String
+  currency       FiatCurrency @default(USD)
+  spendingLimit  Decimal      @default(5000) @db.Decimal(20, 2)
+  currentSpend   Decimal      @default(0)    @db.Decimal(20, 2)
+  cardType       CardType     @default(VIRTUAL)
+  cardUsage      CardUsage    @default(MULTI_USE)
+  status         CardStatus   @default(ACTIVE)
+  isFrozen       Boolean      @default(false)
+  metadata       Json?
+  
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([status])
+  @@index([last4])
+}

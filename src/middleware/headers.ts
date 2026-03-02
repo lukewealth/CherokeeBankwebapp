@@ -13,7 +13,7 @@ export const securityHeaders = {
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com",
     "img-src 'self' data: https: blob:",
-    "connect-src 'self' https://api.coingecko.com https://api.openai.com",
+    "connect-src 'self' https://api.coingecko.com https://api.deepseek.com",
     "frame-ancestors 'none'",
   ].join('; '),
 };

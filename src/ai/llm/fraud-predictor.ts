@@ -1,8 +1,9 @@
-// Cherokee Bank - AI Fraud Predictor (OpenAI-powered risk analysis)
+// Cherokee Bank - AI Fraud Predictor (DeepSeek-powered risk analysis)
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY || 'sk-dev-placeholder',
+const deepseek = new OpenAI({
+  apiKey: process.env.DEEPSEEK_API_KEY || 'sk-dev-placeholder',
+  baseURL: process.env.DEEPSEEK_BASE_URL || 'https://api.deepseek.com',
 });
 
 interface TransactionContext {
@@ -54,8 +55,8 @@ Respond with a JSON object with these fields:
 - explanation: string (brief analysis)
 - suggestedAction: string (what should the bank do)`;
 
-      const completion = await openai.chat.completions.create({
-        model: process.env.OPENAI_MODEL || 'gpt-4',
+      const completion = await deepseek.chat.completions.create({
+        model: process.env.DEEPSEEK_MODEL || 'deepseek-chat',
         messages: [
           {
             role: 'system',

@@ -5,12 +5,12 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-COPY package.json package-lock.json* ./
+COPY package.json yarn.lock* ./
 COPY prisma ./prisma/
-RUN npm ci
+RUN yarn install --frozen-lockfile
 
 # Generate Prisma client
-RUN npx prisma generate
+RUN yarn prisma generate
 
 # Rebuild only when needed
 FROM base AS builder
@@ -21,7 +21,7 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 
-RUN npm run build
+RUN yarn build
 
 # Production image
 FROM base AS runner

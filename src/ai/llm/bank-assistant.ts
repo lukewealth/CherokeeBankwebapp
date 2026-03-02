@@ -1,8 +1,9 @@
-// Cherokee Bank - AI Banking Assistant (OpenAI GPT-4)
+// Cherokee Bank - AI Banking Assistant (DeepSeek)
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY || 'sk-dev-placeholder',
+const deepseek = new OpenAI({
+  apiKey: process.env.DEEPSEEK_API_KEY || 'sk-dev-placeholder',
+  baseURL: process.env.DEEPSEEK_BASE_URL || 'https://api.deepseek.com',
 });
 
 const SYSTEM_PROMPT = `You are Cherokee Bank's AI Banking Assistant. You help customers with:
@@ -52,8 +53,8 @@ export class BankAssistant {
     }
 
     try {
-      const completion = await openai.chat.completions.create({
-        model: process.env.OPENAI_MODEL || 'gpt-4',
+      const completion = await deepseek.chat.completions.create({
+        model: process.env.DEEPSEEK_MODEL || 'deepseek-chat',
         messages: [
           { role: 'system', content: systemMessage },
           ...messages,
@@ -82,8 +83,8 @@ export class BankAssistant {
     }
 
     try {
-      const stream = await openai.chat.completions.create({
-        model: process.env.OPENAI_MODEL || 'gpt-4',
+      const stream = await deepseek.chat.completions.create({
+        model: process.env.DEEPSEEK_MODEL || 'deepseek-chat',
         messages: [
           { role: 'system', content: systemMessage },
           ...messages,

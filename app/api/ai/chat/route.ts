@@ -29,20 +29,21 @@ Be concise, professional, and helpful. Never share sensitive account details dir
 If a user asks about specific transactions, guide them to check their dashboard.
 Current user ID: ${authResult.userId}`;
 
-    // Use OpenAI if available, otherwise return structured response
-    const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+    // Use DeepSeek if available, otherwise return structured response
+    const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
 
     let reply: string;
 
-    if (OPENAI_API_KEY) {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    if (DEEPSEEK_API_KEY) {
+      const baseURL = process.env.DEEPSEEK_BASE_URL || 'https://api.deepseek.com';
+      const response = await fetch(`${baseURL}/v1/chat/completions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${OPENAI_API_KEY}`,
+          'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
         },
         body: JSON.stringify({
-          model: process.env.OPENAI_MODEL || 'gpt-4',
+          model: process.env.DEEPSEEK_MODEL || 'deepseek-chat',
           messages: [
             { role: 'system', content: systemPrompt },
             ...conversationHistory.slice(-10),

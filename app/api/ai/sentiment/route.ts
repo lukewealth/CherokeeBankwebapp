@@ -15,19 +15,20 @@ export async function POST(request: NextRequest) {
       return errorResponse('VALIDATION_ERROR', 'Text is required', 400);
     }
 
-    const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+    const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
 
     let sentiment: { score: number; label: string; confidence: number; keywords: string[] };
 
-    if (OPENAI_API_KEY) {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    if (DEEPSEEK_API_KEY) {
+      const baseURL = process.env.DEEPSEEK_BASE_URL || 'https://api.deepseek.com';
+      const response = await fetch(`${baseURL}/v1/chat/completions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${OPENAI_API_KEY}`,
+          'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
         },
         body: JSON.stringify({
-          model: 'gpt-4',
+          model: process.env.DEEPSEEK_MODEL || 'deepseek-chat',
           messages: [
             {
               role: 'system',

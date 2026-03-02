@@ -87,18 +87,19 @@ export async function ragAnswer(
   // Build context from top results
   const context = results.map((r) => r.document.content).join('\n\n');
 
-  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
 
-  if (OPENAI_API_KEY) {
+  if (DEEPSEEK_API_KEY) {
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      const baseURL = process.env.DEEPSEEK_BASE_URL || 'https://api.deepseek.com';
+      const response = await fetch(`${baseURL}/v1/chat/completions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${OPENAI_API_KEY}`,
+          Authorization: `Bearer ${DEEPSEEK_API_KEY}`,
         },
         body: JSON.stringify({
-          model: process.env.OPENAI_MODEL || 'gpt-4',
+          model: process.env.DEEPSEEK_MODEL || 'deepseek-chat',
           messages: [
             {
               role: 'system',

@@ -42,7 +42,7 @@ const spendingCategories = [
 
 const merchantLimits = [
   { name: "AWS Cloud", icon: Monitor, spent: 5000, limit: 10000, color: "#3B82F6" },
-  { name: "OpenAI API", icon: Sparkles, spent: 2500, limit: 5000, color: "#10B981" },
+  { name: "DeepSeek API", icon: Sparkles, spent: 2500, limit: 5000, color: "#10B981" },
   { name: "Travel Portal", icon: Plane, spent: 1200, limit: 3000, color: "#D4AF37" },
   { name: "Luxury Retail", icon: ShoppingBag, spent: 800, limit: 2000, color: "#A855F7" },
 ];
@@ -146,9 +146,8 @@ function CardVisual({
 
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl border ${
-        isFrozen ? "border-blue-400/30" : isChero ? "border-[#D4AF37]/20" : "border-[#D4AF37]/25"
-      } ${bgClass} ${compact ? "p-5" : "p-6"} ${isFrozen ? "opacity-75" : ""}`}
+      className={`relative overflow-hidden rounded-2xl border ${isFrozen ? "border-blue-400/30" : isChero ? "border-[#D4AF37]/20" : "border-[#D4AF37]/25"
+        } ${bgClass} ${compact ? "p-5" : "p-6"} ${isFrozen ? "opacity-75" : ""}`}
     >
       {/* Frozen overlay */}
       {isFrozen && (
@@ -369,9 +368,8 @@ function CardGeneratorModal({
                                 setCurrency(c.code);
                                 setShowCurrencyDropdown(false);
                               }}
-                              className={`w-full flex items-center gap-3 px-4 py-3 text-sm hover:bg-white/5 transition-colors ${
-                                currency === c.code ? "bg-[#D4AF37]/10 text-[#D4AF37]" : "text-white"
-                              }`}
+                              className={`w-full flex items-center gap-3 px-4 py-3 text-sm hover:bg-white/5 transition-colors ${currency === c.code ? "bg-[#D4AF37]/10 text-[#D4AF37]" : "text-white"
+                                }`}
                             >
                               <span className="text-lg">{c.flag}</span>
                               <span>{c.label}</span>
@@ -418,22 +416,20 @@ function CardGeneratorModal({
                   <div className="flex rounded-xl overflow-hidden border border-white/8">
                     <button
                       onClick={() => setCardUsage("SINGLE_USE")}
-                      className={`flex-1 py-3 text-sm font-medium transition-all ${
-                        cardUsage === "SINGLE_USE"
+                      className={`flex-1 py-3 text-sm font-medium transition-all ${cardUsage === "SINGLE_USE"
                           ? "bg-[#D4AF37]/15 text-[#D4AF37] border-r border-[#D4AF37]/20"
                           : "bg-white/3 text-white/40 border-r border-white/8 hover:bg-white/5"
-                      }`}
+                        }`}
                     >
                       <Zap className="w-4 h-4 inline-block mr-1.5 -mt-0.5" />
                       Single Use
                     </button>
                     <button
                       onClick={() => setCardUsage("MULTI_USE")}
-                      className={`flex-1 py-3 text-sm font-medium transition-all ${
-                        cardUsage === "MULTI_USE"
+                      className={`flex-1 py-3 text-sm font-medium transition-all ${cardUsage === "MULTI_USE"
                           ? "bg-[#D4AF37]/15 text-[#D4AF37]"
                           : "bg-white/3 text-white/40 hover:bg-white/5"
-                      }`}
+                        }`}
                     >
                       <Lock className="w-4 h-4 inline-block mr-1.5 -mt-0.5" />
                       Multi-Use

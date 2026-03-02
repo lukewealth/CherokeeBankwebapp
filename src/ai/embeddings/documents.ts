@@ -17,17 +17,18 @@ export interface DocumentChunk {
 const documentStore: Map<string, DocumentChunk> = new Map();
 
 /**
- * Generate embedding vector for text using OpenAI Embeddings API
+ * Generate embedding vector for text using DeepSeek-compatible Embeddings API
  */
 export async function generateEmbedding(text: string): Promise<number[]> {
-  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
 
-  if (OPENAI_API_KEY) {
-    const response = await fetch('https://api.openai.com/v1/embeddings', {
+  if (DEEPSEEK_API_KEY) {
+    const baseURL = process.env.DEEPSEEK_BASE_URL || 'https://api.deepseek.com';
+    const response = await fetch(`${baseURL}/v1/embeddings`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${OPENAI_API_KEY}`,
+        Authorization: `Bearer ${DEEPSEEK_API_KEY}`,
       },
       body: JSON.stringify({
         model: 'text-embedding-3-small',

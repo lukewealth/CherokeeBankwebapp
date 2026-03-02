@@ -46,7 +46,7 @@ export default function LandingPage() {
               </linearGradient>
             </defs>
           </svg>
-          
+
           {/* Flying Airplane */}
           <FlyingAirplane />
 
@@ -92,7 +92,7 @@ export default function LandingPage() {
             </h1>
 
             <p className="text-base text-white/50 font-light max-w-md leading-relaxed">
-              Unbank the Globe with multi-currency banking and blockchain with our utilities token.
+              Multi-currency accounts, instant global transfers, and intelligent financial tools — all in one secure platform.
             </p>
 
             <div className="flex flex-wrap gap-4 mt-2">
@@ -103,10 +103,10 @@ export default function LandingPage() {
                 Open Account
               </Link>
               <Link
-                href="/dashboard/crypto"
+                href="/about"
                 className="px-8 py-3 text-sm font-semibold rounded-full border border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#D4AF37]/10 hover:border-[#D4AF37]/70 transition-all"
               >
-                Explore $Chero
+                Learn More
               </Link>
             </div>
           </div>
@@ -117,21 +117,21 @@ export default function LandingPage() {
       <section id="features" className="relative z-10 max-w-7xl mx-auto px-8 py-24">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-light mt-6 mb-4">
-            AI &amp; Blockchain Powered{" "}
-            <span className="text-[#D4AF37]">Finance</span>
+            Intelligent{" "}
+            <span className="text-[#D4AF37]">Banking</span>
           </h2>
           <p className="text-lg text-white/40 max-w-2xl mx-auto">
-            Cherokee Digital fuses artificial intelligence with blockchain technology to deliver a truly global financial platform.
+            Cherokee Digital combines smart technology with trusted financial services to deliver a seamless global banking experience.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
-            { icon: "psychology", title: "AI-Powered Insights", desc: "GPT-4 driven fraud detection, predictive budgeting, and intelligent spend analysis across all your accounts." },
-            { icon: "token", title: "$CHERO Blockchain Token", desc: "Gold-backed digital token with staking rewards, DeFi integration, and transparent on-chain settlement." },
+            { icon: "psychology", title: "AI-Powered Insights", desc: "Intelligent fraud detection, predictive budgeting, and smart spend analysis across all your accounts." },
+            { icon: "account_balance", title: "Multi-Currency Accounts", desc: "Hold and manage USD, EUR, GBP, and more in secure, institutional-grade digital accounts with full control." },
             { icon: "language", title: "Global Transfers", desc: "Instant cross-border payments across 180+ countries with real-time FX conversion and zero hidden fees." },
-            { icon: "account_balance_wallet", title: "Multi-Currency Vaults", desc: "Hold USD, EUR, GBP, and $CHERO in institutional-grade digital vaults with AES-256 encryption." },
-            { icon: "currency_bitcoin", title: "Crypto Exchange", desc: "Trade BTC, ETH, and USDT with real-time market data, instant settlement, and deep liquidity pools." },
-            { icon: "shield", title: "Zero-Trust Security", desc: "Blockchain-verified identity, zero-knowledge proofs, 2FA, and full KYC/AML compliance built in." },
+            { icon: "account_balance_wallet", title: "Smart Wallets", desc: "Organize your finances with separate wallets for spending, savings, and investments — all in one place." },
+            { icon: "trending_up", title: "Wealth Tools", desc: "Currency conversion, portfolio tracking, and automated savings goals to help you grow your wealth effortlessly." },
+            { icon: "shield", title: "Bank-Grade Security", desc: "256-bit encryption, two-factor authentication, real-time fraud monitoring, and full KYC/AML compliance." },
           ].map((f) => (
             <div key={f.title} className="cherokee-card p-8 group hover:scale-[1.02] transition-all">
               <div className="w-14 h-14 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center mb-6 group-hover:bg-[#D4AF37]/20 transition-colors">
@@ -150,11 +150,11 @@ export default function LandingPage() {
           <div className="absolute -top-20 -right-20 w-60 h-60 bg-[#D4AF37]/10 blur-[100px] rounded-full" />
           <div className="relative z-10">
             <h2 className="text-4xl font-light mb-4">
-              Ready to Join the{" "}
-              <span className="text-[#D4AF37]">Future?</span>
+              Ready to Bank{" "}
+              <span className="text-[#D4AF37]">Smarter?</span>
             </h2>
             <p className="text-white/50 mb-8 max-w-lg mx-auto">
-              Open your Cherokee Digital account today and access multi-currency wallets, crypto trading, and AI-powered banking.
+              Open your Cherokee Digital account today and access multi-currency accounts, instant global transfers, and intelligent financial tools.
             </p>
             <div className="flex gap-4 justify-center">
               <Link href="/register" className="px-8 py-3 text-sm font-semibold rounded-full bg-linear-to-r from-[#D4AF37] to-[#b8962e] text-[#0b1120] shadow-lg shadow-[#D4AF37]/20 hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all">
@@ -188,11 +188,11 @@ export default function LandingPage() {
                   {/* Header */}
                   <div className="flex items-center justify-between">
                     <div className="w-9 h-9 rounded-full border-2 border-[#D4AF37]/50 bg-[#D4AF37]/10 flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-4 h-4 text-[#D4AF37]" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                      <svg viewBox="0 0 24 24" className="w-4 h-4 text-[#D4AF37]" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>
                     </div>
                     <span className="text-[11px] font-semibold text-white">Hello, Alex</span>
                     <div className="relative">
-                      <svg viewBox="0 0 24 24" className="w-4 h-4 text-[#D4AF37]" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+                      <svg viewBox="0 0 24 24" className="w-4 h-4 text-[#D4AF37]" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" /></svg>
                       <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
                     </div>
                   </div>
@@ -201,7 +201,7 @@ export default function LandingPage() {
                   <div className="rounded-xl px-4 py-4" style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)", border: "1px solid rgba(255,255,255,0.08)" }}>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-[9px] text-white/40 uppercase tracking-wider">Total Balance</span>
-                      <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-white/30" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                      <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-white/30" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" /></svg>
                     </div>
                     <div className="text-xl font-bold text-white tracking-tight">$12,480.50</div>
                     <div className="text-[8px] text-white/30 mt-0.5">Primary Checking Account</div>
@@ -272,7 +272,7 @@ export default function LandingPage() {
                 Bank Anywhere, <span className="text-[#D4AF37]">Anytime</span>
               </h2>
               <p className="text-sm text-white/45 max-w-md leading-relaxed mb-8">
-                Download the Cherokee Digital app for instant access to your wallets, transfers, $CHERO staking, and AI-powered insights — right from your pocket.
+                Download the Cherokee Digital app for instant access to your accounts, transfers, savings goals, and smart financial insights — right from your pocket.
               </p>
 
               {/* Store badges */}
@@ -283,7 +283,7 @@ export default function LandingPage() {
                   className="group flex items-center gap-3 px-5 py-3 rounded-xl border border-white/10 hover:border-[#D4AF37]/40 bg-white/3 hover:bg-[#D4AF37]/5 transition-all duration-300"
                 >
                   <svg viewBox="0 0 24 24" className="w-6 h-6 text-white/50 group-hover:text-[#D4AF37] transition-colors" fill="currentColor">
-                    <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.395 12l2.303-2.492zM5.864 3.458L16.8 9.79l-2.302 2.302L5.864 3.458z"/>
+                    <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.395 12l2.303-2.492zM5.864 3.458L16.8 9.79l-2.302 2.302L5.864 3.458z" />
                   </svg>
                   <div className="text-left">
                     <span className="block text-[9px] text-white/40 uppercase tracking-wider leading-none group-hover:text-white/50 transition-colors">Get it on</span>
@@ -297,7 +297,7 @@ export default function LandingPage() {
                   className="group flex items-center gap-3 px-5 py-3 rounded-xl border border-white/10 hover:border-[#D4AF37]/40 bg-white/3 hover:bg-[#D4AF37]/5 transition-all duration-300"
                 >
                   <svg viewBox="0 0 24 24" className="w-6 h-6 text-white/50 group-hover:text-[#D4AF37] transition-colors" fill="currentColor">
-                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                   </svg>
                   <div className="text-left">
                     <span className="block text-[9px] text-white/40 uppercase tracking-wider leading-none group-hover:text-white/50 transition-colors">Download on the</span>
@@ -330,38 +330,38 @@ export default function LandingPage() {
                 />
               </Link>
               <p className="text-xs text-white/30 leading-relaxed max-w-50">
-                Next-generation digital banking powered by AI and blockchain technology.
+                Next-generation digital banking for a connected world.
               </p>
               {/* Social Icons */}
               <div className="flex items-center gap-3 mt-5">
                 {/* Twitter / X */}
                 <a href="#" className="group p-2 rounded-lg bg-white/3 border border-white/5 hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 transition-all duration-300">
                   <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-white/30 group-hover:text-[#D4AF37] transition-colors" fill="currentColor">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
                 </a>
                 {/* LinkedIn */}
                 <a href="#" className="group p-2 rounded-lg bg-white/3 border border-white/5 hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 transition-all duration-300">
                   <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-white/30 group-hover:text-[#D4AF37] transition-colors" fill="currentColor">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                   </svg>
                 </a>
                 {/* Instagram */}
                 <a href="#" className="group p-2 rounded-lg bg-white/3 border border-white/5 hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 transition-all duration-300">
                   <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-white/30 group-hover:text-[#D4AF37] transition-colors" fill="currentColor">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
                   </svg>
                 </a>
                 {/* Facebook */}
                 <a href="#" className="group p-2 rounded-lg bg-white/3 border border-white/5 hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 transition-all duration-300">
                   <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-white/30 group-hover:text-[#D4AF37] transition-colors" fill="currentColor">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                   </svg>
                 </a>
                 {/* YouTube */}
                 <a href="#" className="group p-2 rounded-lg bg-white/3 border border-white/5 hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 transition-all duration-300">
                   <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-white/30 group-hover:text-[#D4AF37] transition-colors" fill="currentColor">
-                    <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                   </svg>
                 </a>
               </div>
@@ -371,8 +371,8 @@ export default function LandingPage() {
             <div>
               <h4 className="text-xs font-bold uppercase tracking-widest text-white/50 mb-4">Products</h4>
               <ul className="space-y-2.5">
-                <li><Link href="/dashboard/wallets" className="text-xs text-white/30 hover:text-[#D4AF37] transition-colors">Multi-Currency Wallets</Link></li>
-                <li><Link href="/dashboard/crypto" className="text-xs text-white/30 hover:text-[#D4AF37] transition-colors">$CHERO Token</Link></li>
+                <li><Link href="/dashboard/wallets" className="text-xs text-white/30 hover:text-[#D4AF37] transition-colors">Multi-Currency Accounts</Link></li>
+                <li><Link href="/dashboard/wallets" className="text-xs text-white/30 hover:text-[#D4AF37] transition-colors">Smart Wallets</Link></li>
                 <li><Link href="/dashboard/send" className="text-xs text-white/30 hover:text-[#D4AF37] transition-colors">Global Transfers</Link></li>
                 <li><Link href="/dashboard/transactions" className="text-xs text-white/30 hover:text-[#D4AF37] transition-colors">Transaction History</Link></li>
                 <li><Link href="/dashboard/ai" className="text-xs text-white/30 hover:text-[#D4AF37] transition-colors">AI Banking</Link></li>

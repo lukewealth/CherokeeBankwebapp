@@ -60,8 +60,8 @@ export default function CryptoPage() {
     >
       {/* Header */}
       <motion.div variants={itemVariants}>
-        <h1 className="text-3xl font-bold text-white mb-2">Crypto Wallets</h1>
-        <p className="text-white/60">Manage your cryptocurrency holdings and trade</p>
+        <h1 className="text-3xl font-bold text-white mb-2">Investment Portfolio</h1>
+        <p className="text-white/60">Track and manage your digital asset holdings</p>
       </motion.div>
 
       {/* Market Overview */}
@@ -80,9 +80,8 @@ export default function CryptoPage() {
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs font-bold text-brand-accent uppercase">{rate.symbol}</span>
-                    <span className={`text-xs font-bold px-2 py-1 rounded ${
-                      rate.change >= 0 ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'
-                    }`}>
+                    <span className={`text-xs font-bold px-2 py-1 rounded ${rate.change >= 0 ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'
+                      }`}>
                       {rate.change >= 0 ? '+' : ''}{rate.change}%
                     </span>
                   </div>

@@ -1,7 +1,7 @@
 export default function CareersPage() {
   const positions = [
     { title: 'Senior Full-Stack Engineer', dept: 'Engineering', location: 'Remote', type: 'Full-time', icon: 'code' },
-    { title: 'Blockchain Developer', dept: 'Engineering', location: 'Remote', type: 'Full-time', icon: 'link' },
+    { title: 'Backend Engineer', dept: 'Engineering', location: 'Remote', type: 'Full-time', icon: 'storage' },
     { title: 'ML / AI Engineer', dept: 'AI & Data', location: 'Remote', type: 'Full-time', icon: 'psychology' },
     { title: 'Product Designer', dept: 'Design', location: 'Remote', type: 'Full-time', icon: 'palette' },
     { title: 'Compliance Officer', dept: 'Legal', location: 'New York, NY', type: 'Full-time', icon: 'gavel' },

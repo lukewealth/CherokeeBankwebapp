@@ -23,20 +23,20 @@ const item = {
 
 /* ── Quick‑action config ── */
 const quickActions = [
-  { icon: Send,              label: "Send",     href: "/dashboard/send" },
-  { icon: ArrowDownToLine,   label: "Receive",  href: "/dashboard/wallets" },
-  { icon: ArrowUpDown,       label: "Convert",  href: "/dashboard/crypto" },
-  { icon: CreditCard,        label: "Cards",    href: "/dashboard/cards" },
-  { icon: Download,          label: "Deposit",  href: "/dashboard/wallets" },
-  { icon: ArrowUpFromLine,   label: "Withdraw", href: "/dashboard/wallets" },
+  { icon: Send, label: "Send", href: "/dashboard/send" },
+  { icon: ArrowDownToLine, label: "Receive", href: "/dashboard/wallets" },
+  { icon: ArrowUpDown, label: "Exchange", href: "/dashboard/wallets" },
+  { icon: CreditCard, label: "Cards", href: "/dashboard/cards" },
+  { icon: Download, label: "Deposit", href: "/dashboard/wallets" },
+  { icon: ArrowUpFromLine, label: "Withdraw", href: "/dashboard/wallets" },
 ];
 
 /* ── Mock transactions (matched to design) ── */
 const recentTxns = [
-  { id: "1", name: "Payment to",   target: "Amazon",           amount: -129.99, currency: "USD", date: "Today, 10:30 AM",      status: "completed" as const },
-  { id: "2", name: "Received from", target: "John Doe",        amount: 500.00,  currency: "USD", date: "Yesterday, 4:15 PM",   status: "completed" as const },
-  { id: "3", name: "Converted to",  target: "Gold Coin",       amount: 1.00,    currency: "XAU", date: "May 15, 2:00 PM",      status: "completed" as const },
-  { id: "4", name: "Deposit from",  target: "Bank of America", amount: 2500.00, currency: "USD", date: "May 14, 9:00 AM",      status: "pending"   as const },
+  { id: "1", name: "Payment to", target: "Amazon", amount: -129.99, currency: "USD", date: "Today, 10:30 AM", status: "completed" as const },
+  { id: "2", name: "Received from", target: "John Doe", amount: 500.00, currency: "USD", date: "Yesterday, 4:15 PM", status: "completed" as const },
+  { id: "3", name: "Converted to", target: "EUR Account", amount: 950.00, currency: "EUR", date: "May 15, 2:00 PM", status: "completed" as const },
+  { id: "4", name: "Deposit from", target: "Bank of America", amount: 2500.00, currency: "USD", date: "May 14, 9:00 AM", status: "pending" as const },
 ];
 
 const statusIcons: Record<string, typeof CheckCircle2> = {
@@ -46,8 +46,8 @@ const statusIcons: Record<string, typeof CheckCircle2> = {
 };
 const statusColors: Record<string, string> = {
   completed: "text-emerald-400",
-  pending:   "text-amber-400",
-  failed:    "text-red-400",
+  pending: "text-amber-400",
+  failed: "text-red-400",
 };
 
 /* ══════════════════════════════════════════════════════════════ */
@@ -100,8 +100,8 @@ export default function DashboardPage() {
               <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-linear-to-r from-[#D4AF37]/20 to-[#D4AF37]/10 border border-[#D4AF37]/25 shrink-0">
                 <Shield className="w-5 h-5 text-[#D4AF37]" />
                 <div className="text-right">
-                  <p className="text-[#D4AF37] font-semibold text-sm leading-tight">Gold Reserve</p>
-                  <p className="text-[#D4AF37]/70 text-xs leading-tight">Backed</p>
+                  <p className="text-[#D4AF37] font-semibold text-sm leading-tight">FDIC Insured</p>
+                  <p className="text-[#D4AF37]/70 text-xs leading-tight">Protected</p>
                 </div>
               </div>
             </div>

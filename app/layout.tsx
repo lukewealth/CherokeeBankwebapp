@@ -21,9 +21,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Cherokee Digital — AI-Powered Global Finance",
-  description: "Next-generation AI and blockchain-powered financial platform with multi-currency wallets, crypto exchange, and intelligent global transfers.",
-  keywords: ["AI finance", "blockchain banking", "crypto", "fintech", "Cherokee Digital", "$CHERO", "global transfers"],
+  title: "Cherokee Digital — Modern Global Banking",
+  description: "A next-generation digital banking platform with multi-currency accounts, intelligent transfers, and AI-powered financial insights. Bank smarter, anywhere.",
+  keywords: ["digital banking", "neobank", "global finance", "fintech", "Cherokee Digital", "multi-currency", "smart banking"],
 };
 
 export default function RootLayout({

@@ -29,12 +29,12 @@ const CURRENCIES = [
   { code: "USD", label: "US Dollar", symbol: "$", flag: "🇺🇸" },
   { code: "EUR", label: "Euro", symbol: "€", flag: "🇪🇺" },
   { code: "GBP", label: "British Pound", symbol: "£", flag: "🇬🇧" },
-  { code: "CHERO", label: "$Chero", symbol: "₵", flag: "🪙" },
+  { code: "CHERO", label: "Digital Gold", symbol: "₵", flag: "🪙" },
 ];
 
 /* ─── Mock analytics data (matched to design) ─── */
 const spendingCategories = [
-  { name: "Crypto Trading", pct: 45, color: "#D4AF37" },
+  { name: "Investments", pct: 45, color: "#D4AF37" },
   { name: "Cloud Services", pct: 25, color: "#3B82F6" },
   { name: "Travel & Entertainment", pct: 15, color: "#10B981" },
   { name: "Online Shopping", pct: 15, color: "#A855F7" },
@@ -51,7 +51,7 @@ const merchantLimits = [
 const MOCK_CARDS = [
   {
     id: "mock-1",
-    cardName: "Primary $Chero Card",
+    cardName: "Primary Digital Card",
     last4: "1234",
     expiryMonth: 12,
     expiryYear: 28,
@@ -417,8 +417,8 @@ function CardGeneratorModal({
                     <button
                       onClick={() => setCardUsage("SINGLE_USE")}
                       className={`flex-1 py-3 text-sm font-medium transition-all ${cardUsage === "SINGLE_USE"
-                          ? "bg-[#D4AF37]/15 text-[#D4AF37] border-r border-[#D4AF37]/20"
-                          : "bg-white/3 text-white/40 border-r border-white/8 hover:bg-white/5"
+                        ? "bg-[#D4AF37]/15 text-[#D4AF37] border-r border-[#D4AF37]/20"
+                        : "bg-white/3 text-white/40 border-r border-white/8 hover:bg-white/5"
                         }`}
                     >
                       <Zap className="w-4 h-4 inline-block mr-1.5 -mt-0.5" />
@@ -427,8 +427,8 @@ function CardGeneratorModal({
                     <button
                       onClick={() => setCardUsage("MULTI_USE")}
                       className={`flex-1 py-3 text-sm font-medium transition-all ${cardUsage === "MULTI_USE"
-                          ? "bg-[#D4AF37]/15 text-[#D4AF37]"
-                          : "bg-white/3 text-white/40 hover:bg-white/5"
+                        ? "bg-[#D4AF37]/15 text-[#D4AF37]"
+                        : "bg-white/3 text-white/40 hover:bg-white/5"
                         }`}
                     >
                       <Lock className="w-4 h-4 inline-block mr-1.5 -mt-0.5" />

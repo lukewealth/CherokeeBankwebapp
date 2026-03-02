@@ -66,7 +66,7 @@ export default function TransactionsPage() {
 
       {/* Filters */}
       <motion.div variants={itemVariants} className="flex gap-2 flex-wrap">
-        {['All', 'Sent', 'Received', 'Exchange', 'Staking'].map((filter) => (
+        {['All', 'Sent', 'Received', 'Exchange', 'Savings'].map((filter) => (
           <motion.button
             key={filter}
             whileHover={{ scale: 1.05 }}

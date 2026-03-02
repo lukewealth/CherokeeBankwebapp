@@ -1,8 +1,8 @@
 export default function SupportPage() {
   const faqs = [
     { q: 'How do I create an account?', a: 'Click "Get Started" on our homepage. Fill in your details, verify your email with the OTP, and complete KYC verification to unlock all features.' },
-    { q: 'How do I buy cryptocurrency?', a: 'Navigate to the Crypto section in your dashboard. Select the cryptocurrency you want to buy, choose your funding wallet, enter the amount, and confirm.' },
-    { q: 'What currencies are supported?', a: 'We support USD, EUR, GBP, and our native CHERO token for fiat. For crypto, we support Bitcoin (BTC), Ethereum (ETH), and Tether (USDT).' },
+    { q: 'How do I access investments?', a: 'Navigate to the Investments section in your dashboard. Select the asset you want to explore, choose your funding account, enter the amount, and confirm.' },
+    { q: 'What currencies are supported?', a: 'We support USD, EUR, GBP, and several other major currencies. We also provide access to select digital assets including Bitcoin (BTC), Ethereum (ETH), and stablecoins.' },
     { q: 'How does the merchant POS work?', a: 'Set up your merchant account from the Merchant section. You\'ll receive a unique POS ID that customers can use to send payments directly to your business wallet.' },
     { q: 'Is my data secure?', a: 'Yes. We use bank-grade encryption (AES-256), mandatory KYC/AML compliance, real-time fraud detection, OFAC sanctions screening, and two-factor authentication.' },
     { q: 'How can I contact support?', a: 'You can use our AI assistant for instant help, or email Info@cherokeebank.org for complex issues. Our team responds within 24 hours.' },

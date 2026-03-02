@@ -38,7 +38,7 @@ export default function AiAssistantPage() {
     {
       id: '1',
       role: 'assistant',
-      content: 'Hello! I\'m Cherokee Bank\'s AI Assistant. I can help you with account management, transactions, crypto exchange, and more. What can I assist you with today?',
+      content: 'Hello! I\'m Cherokee Bank\'s AI Assistant. I can help you with account management, transactions, investments, and more. What can I assist you with today?',
       timestamp: new Date(),
     },
   ]);
@@ -143,11 +143,10 @@ export default function AiAssistantPage() {
                     </div>
                   )}
                   <div
-                    className={`max-w-xs px-4 py-3 rounded-lg ${
-                      message.role === 'user'
+                    className={`max-w-xs px-4 py-3 rounded-lg ${message.role === 'user'
                         ? 'bg-brand-accent/30 text-white'
                         : 'bg-white/5 text-white/90 border border-white/10'
-                    }`}
+                      }`}
                   >
                     <p className="text-sm">{message.content}</p>
                     <p className="text-xs mt-1 opacity-60">

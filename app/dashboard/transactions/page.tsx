@@ -7,40 +7,42 @@ import { TransitionFade } from '@/src/components/animations/loading-states';
 import { useState, useEffect } from 'react';
 import {
   Search, Download, ArrowUpRight, ArrowDownLeft, ArrowUpDown,
-  CheckCircle2, Clock, AlertCircle, ChevronDown,
+  CheckCircle2, Clock, AlertCircle, ChevronDown, Activity,
 } from 'lucide-react';
 
+/* ── Animations ── */
 const stagger = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.06 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.04, delayChildren: 0.05 } },
 };
-const fadeUp = {
-  hidden: { y: 16, opacity: 0 },
-  show: { y: 0, opacity: 1, transition: { type: 'spring' as const, stiffness: 280, damping: 26 } },
-};
-
-const statusConfig: Record<string, { icon: typeof CheckCircle2; color: string; bg: string; label: string }> = {
-  completed: { icon: CheckCircle2, color: 'text-emerald-400', bg: 'bg-emerald-500/10', label: 'Completed' },
-  COMPLETED: { icon: CheckCircle2, color: 'text-emerald-400', bg: 'bg-emerald-500/10', label: 'Completed' },
-  pending: { icon: Clock, color: 'text-amber-400', bg: 'bg-amber-500/10', label: 'Pending' },
-  PENDING: { icon: Clock, color: 'text-amber-400', bg: 'bg-amber-500/10', label: 'Pending' },
-  failed: { icon: AlertCircle, color: 'text-red-400', bg: 'bg-red-500/10', label: 'Failed' },
-  FAILED: { icon: AlertCircle, color: 'text-red-400', bg: 'bg-red-500/10', label: 'Failed' },
+const fadeIn = {
+  hidden: { y: 12, opacity: 0 },
+  show: { y: 0, opacity: 1, transition: { type: 'spring' as const, stiffness: 300, damping: 30 } },
 };
 
-const typeConfig: Record<string, { icon: typeof ArrowUpRight; color: string; bg: string; label: string }> = {
-  send: { icon: ArrowUpRight, color: 'text-blue-400', bg: 'bg-blue-500/10', label: 'Sent' },
-  receive: { icon: ArrowDownLeft, color: 'text-emerald-400', bg: 'bg-emerald-500/10', label: 'Received' },
-  exchange: { icon: ArrowUpDown, color: 'text-purple-400', bg: 'bg-purple-500/10', label: 'Exchanged' },
-  TRANSFER: { icon: ArrowUpRight, color: 'text-blue-400', bg: 'bg-blue-500/10', label: 'Transfer' },
-  DEPOSIT: { icon: ArrowDownLeft, color: 'text-emerald-400', bg: 'bg-emerald-500/10', label: 'Deposit' },
-  WITHDRAW: { icon: ArrowUpRight, color: 'text-orange-400', bg: 'bg-orange-500/10', label: 'Withdrawal' },
-  EXCHANGE: { icon: ArrowUpDown, color: 'text-purple-400', bg: 'bg-purple-500/10', label: 'Exchange' },
+/* ── Config maps ── */
+const STATUS: Record<string, { icon: typeof CheckCircle2; color: string; bg: string; label: string }> = {
+  completed: { icon: CheckCircle2, color: 'text-emerald-400', bg: 'bg-emerald-500/8', label: 'Completed' },
+  COMPLETED: { icon: CheckCircle2, color: 'text-emerald-400', bg: 'bg-emerald-500/8', label: 'Completed' },
+  pending: { icon: Clock, color: 'text-amber-400', bg: 'bg-amber-500/8', label: 'Pending' },
+  PENDING: { icon: Clock, color: 'text-amber-400', bg: 'bg-amber-500/8', label: 'Pending' },
+  failed: { icon: AlertCircle, color: 'text-red-400', bg: 'bg-red-500/8', label: 'Failed' },
+  FAILED: { icon: AlertCircle, color: 'text-red-400', bg: 'bg-red-500/8', label: 'Failed' },
 };
 
-const filters = ['All', 'Transfer', 'Deposit', 'Exchange'];
+const TX_TYPE: Record<string, { icon: typeof ArrowUpRight; color: string; bg: string; label: string }> = {
+  send: { icon: ArrowUpRight, color: 'text-blue-400', bg: 'bg-blue-500/8', label: 'Sent' },
+  receive: { icon: ArrowDownLeft, color: 'text-emerald-400', bg: 'bg-emerald-500/8', label: 'Received' },
+  exchange: { icon: ArrowUpDown, color: 'text-violet-400', bg: 'bg-violet-500/8', label: 'Exchanged' },
+  TRANSFER: { icon: ArrowUpRight, color: 'text-blue-400', bg: 'bg-blue-500/8', label: 'Transfer' },
+  DEPOSIT: { icon: ArrowDownLeft, color: 'text-emerald-400', bg: 'bg-emerald-500/8', label: 'Deposit' },
+  WITHDRAW: { icon: ArrowUpRight, color: 'text-orange-400', bg: 'bg-orange-500/8', label: 'Withdrawal' },
+  EXCHANGE: { icon: ArrowUpDown, color: 'text-violet-400', bg: 'bg-violet-500/8', label: 'Exchange' },
+};
 
-/* ── Safe date formatter (client-only) ── */
+const FILTERS = ['All', 'Transfer', 'Deposit', 'Exchange'];
+
+/* ── Client-safe date formatter ── */
 function ClientDate({ dateStr }: { dateStr: string | undefined }) {
   const [formatted, setFormatted] = useState<{ date: string; time: string }>({ date: '', time: '' });
   useEffect(() => {
@@ -53,8 +55,8 @@ function ClientDate({ dateStr }: { dateStr: string | undefined }) {
   }, [dateStr]);
   return (
     <>
-      <p className="text-xs text-white/40">{formatted.date || '—'}</p>
-      <p className="text-[10px] text-white/20">{formatted.time}</p>
+      <p className="text-[11px] text-white/30">{formatted.date || '\u2014'}</p>
+      <p className="text-[10px] text-white/15">{formatted.time}</p>
     </>
   );
 }
@@ -68,16 +70,15 @@ export default function TransactionsPage() {
   if (loading) {
     return (
       <TransitionFade>
-        <div className="space-y-6 max-w-[1400px] mx-auto">
-          <div className="h-10 w-64 bg-white/5 rounded-xl animate-pulse" />
-          <div className="h-12 bg-white/5 rounded-xl animate-pulse" />
+        <div className="max-w-[1360px] mx-auto space-y-6">
+          <div className="h-8 w-48 bg-white/[0.04] rounded-lg animate-pulse" />
+          <div className="h-10 bg-white/[0.03] rounded-lg animate-pulse" />
           <SkeletonTable />
         </div>
       </TransitionFade>
     );
   }
 
-  // Parse transactions from API response
   const transactions = Array.isArray(txData) ? txData : (txData as any)?.transactions || [];
 
   const filtered = transactions.filter((tx: any) => {
@@ -97,55 +98,59 @@ export default function TransactionsPage() {
 
   return (
     <motion.div
-      className="max-w-[1400px] mx-auto space-y-6 pb-12"
+      className="max-w-[1360px] mx-auto space-y-6 pb-16"
       variants={stagger} initial="hidden" animate="show"
     >
       {/* Header */}
-      <motion.div variants={fadeUp} className="flex items-center justify-between">
+      <motion.div variants={fadeIn} className="flex items-end justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Transaction History</h1>
-          <p className="text-sm text-white/40 mt-0.5">
+          <h1 className="text-[22px] font-semibold text-white tracking-tight leading-tight">
+            Transaction History
+          </h1>
+          <p className="text-[12px] text-white/25 mt-1">
             {transactions.length} total transaction{transactions.length !== 1 ? 's' : ''}
           </p>
         </div>
         <motion.button
-          whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/8 text-white/50 text-sm font-semibold hover:bg-white/5 transition-colors"
+          whileHover={{ y: -1 }} whileTap={{ scale: 0.97 }}
+          className="flex items-center gap-2 px-3.5 py-2 rounded-lg border border-white/[0.06] bg-white/[0.02] text-white/35 text-[12px] font-medium hover:bg-white/[0.04] transition-colors"
         >
-          <Download className="w-4 h-4" /> Export CSV
+          <Download className="w-3.5 h-3.5" strokeWidth={1.8} /> Export CSV
         </motion.button>
       </motion.div>
 
       {/* Filters & Search */}
-      <motion.div variants={fadeUp} className="rounded-2xl border border-white/6 bg-[#0a1628]/80 backdrop-blur-xl p-4">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <div className="flex gap-1.5 flex-wrap">
-            {filters.map((f) => (
-              <button key={f} onClick={() => setActiveFilter(f)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeFilter === f
-                    ? 'bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/20'
-                    : 'bg-white/4 text-white/40 border border-white/5 hover:bg-white/6 hover:text-white/60'
-                  }`}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
-          <div className="relative flex-1 w-full sm:w-auto sm:ml-auto sm:max-w-xs">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/20" />
-            <input type="text" placeholder="Search transactions..." value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-9 pl-9 pr-4 rounded-xl bg-white/4 border border-white/6 text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-[#D4AF37]/25 transition-colors"
-            />
+      <motion.div variants={fadeIn}>
+        <div className="rounded-xl border border-white/[0.04] bg-white/[0.015] p-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <div className="flex gap-1.5 flex-wrap">
+              {FILTERS.map((f) => (
+                <button key={f} onClick={() => setActiveFilter(f)}
+                  className={`px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all ${activeFilter === f
+                      ? 'bg-[#C4A962]/10 text-[#C4A962] border border-[#C4A962]/15'
+                      : 'bg-white/[0.03] text-white/30 border border-white/[0.04] hover:bg-white/[0.05] hover:text-white/45'
+                    }`}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+            <div className="relative flex-1 w-full sm:w-auto sm:ml-auto sm:max-w-xs">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/15" />
+              <input type="text" placeholder="Search transactions..." value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full h-8 pl-9 pr-4 rounded-lg bg-white/[0.03] border border-white/[0.04] text-[12px] text-white/60 placeholder:text-white/15 focus:outline-none focus:border-white/10 transition-colors"
+              />
+            </div>
           </div>
         </div>
       </motion.div>
 
       {/* Transaction List */}
-      <motion.div variants={fadeUp}>
-        <div className="rounded-2xl border border-white/6 bg-[#0a1628]/80 backdrop-blur-xl overflow-hidden">
+      <motion.div variants={fadeIn}>
+        <div className="rounded-xl border border-white/[0.04] bg-white/[0.015] overflow-hidden">
           {/* Table Header */}
-          <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-3 border-b border-white/5 text-[10px] text-white/25 uppercase tracking-wider font-semibold">
+          <div className="hidden md:grid grid-cols-12 gap-4 px-5 py-3 border-b border-white/[0.04] text-[10px] text-white/20 uppercase tracking-wider font-medium">
             <span className="col-span-5">Transaction</span>
             <span className="col-span-2 text-center">Status</span>
             <span className="col-span-2 text-center">Date</span>
@@ -155,36 +160,36 @@ export default function TransactionsPage() {
           <div className="divide-y divide-white/[0.03]">
             <AnimatePresence mode="popLayout">
               {filtered.map((tx: any, i: number) => {
-                const status = statusConfig[tx.status] || statusConfig.PENDING;
-                const type = typeConfig[tx.type] || typeConfig.TRANSFER;
+                const status = STATUS[tx.status] || STATUS.PENDING;
+                const type = TX_TYPE[tx.type] || TX_TYPE.TRANSFER;
                 const StatusIcon = status.icon;
                 const TypeIcon = type.icon;
                 const isExpanded = expandedTx === tx.id;
-                const isReceive = tx.type === 'receive' || tx.type === 'DEPOSIT';
+                const isCredit = tx.type === 'receive' || tx.type === 'DEPOSIT';
                 const amount = typeof tx.amount === 'string' ? parseFloat(tx.amount) : tx.amount;
 
                 return (
                   <motion.div key={tx.id} layout
-                    initial={{ opacity: 0, y: 6 }}
+                    initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0, transition: { delay: i * 0.02 } }}
                     exit={{ opacity: 0 }}
                     onClick={() => setExpandedTx(isExpanded ? null : tx.id)}
                     className="group cursor-pointer"
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 items-center px-4 md:px-6 py-3.5 hover:bg-white/[0.02] transition-colors">
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 items-center px-4 md:px-5 py-3 hover:bg-white/[0.015] transition-colors">
                       <div className="col-span-5 flex items-center gap-3">
-                        <div className={`w-9 h-9 rounded-xl ${type.bg} flex items-center justify-center shrink-0`}>
-                          <TypeIcon className={`w-4 h-4 ${type.color}`} />
+                        <div className={`w-8 h-8 rounded-lg ${type.bg} flex items-center justify-center shrink-0`}>
+                          <TypeIcon className={`w-3.5 h-3.5 ${type.color}`} strokeWidth={1.8} />
                         </div>
                         <div className="min-w-0">
-                          <p className="text-sm font-semibold text-white capitalize truncate">{type.label}</p>
-                          <p className="text-[11px] text-white/25 truncate">{tx.description || tx.reference || '—'}</p>
+                          <p className="text-[13px] font-medium text-white/80 capitalize truncate">{type.label}</p>
+                          <p className="text-[10px] text-white/20 truncate">{tx.description || tx.reference || '\u2014'}</p>
                         </div>
                       </div>
 
                       <div className="col-span-2 flex justify-center">
-                        <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg ${status.bg} ${status.color} text-[10px] font-bold`}>
-                          <StatusIcon className="w-3 h-3" />
+                        <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md ${status.bg} ${status.color} text-[10px] font-medium`}>
+                          <StatusIcon className="w-2.5 h-2.5" />
                           {status.label}
                         </span>
                       </div>
@@ -195,14 +200,14 @@ export default function TransactionsPage() {
 
                       <div className="col-span-3 text-right flex items-center justify-end gap-2">
                         <div>
-                          <p className={`text-sm font-bold tabular-nums ${isReceive ? 'text-emerald-400' : 'text-white'}`}>
-                            {isReceive ? '+' : '-'}
+                          <p className={`text-[13px] font-semibold tabular-nums ${isCredit ? 'text-emerald-400' : 'text-white/70'}`}>
+                            {isCredit ? '+' : '\u2212'}
                             {new Intl.NumberFormat('en-US', { style: 'currency', currency: tx.currency || 'USD' }).format(Math.abs(amount || 0))}
                           </p>
-                          <p className="text-[10px] text-white/20">{tx.currency || 'USD'}</p>
+                          <p className="text-[10px] text-white/15">{tx.currency || 'USD'}</p>
                         </div>
                         <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} className="shrink-0">
-                          <ChevronDown className="w-4 h-4 text-white/15" />
+                          <ChevronDown className="w-3.5 h-3.5 text-white/10" />
                         </motion.div>
                       </div>
                     </div>
@@ -213,26 +218,26 @@ export default function TransactionsPage() {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.25 }}
+                          transition={{ duration: 0.2 }}
                           className="overflow-hidden"
                         >
-                          <div className="px-6 pb-4 pt-1">
-                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                          <div className="px-5 pb-4 pt-1">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-lg bg-white/[0.02] border border-white/[0.04]">
                               <div>
-                                <p className="text-[10px] text-white/25 uppercase tracking-wider font-medium mb-1">Transaction ID</p>
-                                <p className="text-xs text-white/60 font-mono">{tx.id?.slice(0, 20)}...</p>
+                                <p className="text-[10px] text-white/20 uppercase tracking-wider font-medium mb-1">Transaction ID</p>
+                                <p className="text-[11px] text-white/40 font-mono">{tx.id?.slice(0, 20)}...</p>
                               </div>
                               <div>
-                                <p className="text-[10px] text-white/25 uppercase tracking-wider font-medium mb-1">Reference</p>
-                                <p className="text-xs text-white/60 font-mono">{tx.reference || '—'}</p>
+                                <p className="text-[10px] text-white/20 uppercase tracking-wider font-medium mb-1">Reference</p>
+                                <p className="text-[11px] text-white/40 font-mono">{tx.reference || '\u2014'}</p>
                               </div>
                               <div>
-                                <p className="text-[10px] text-white/25 uppercase tracking-wider font-medium mb-1">Fee</p>
-                                <p className="text-xs text-white/60">{tx.fee ? `$${parseFloat(tx.fee).toFixed(2)}` : '$0.00'}</p>
+                                <p className="text-[10px] text-white/20 uppercase tracking-wider font-medium mb-1">Fee</p>
+                                <p className="text-[11px] text-white/40">{tx.fee ? `$${parseFloat(tx.fee).toFixed(2)}` : '$0.00'}</p>
                               </div>
                               <div>
-                                <p className="text-[10px] text-white/25 uppercase tracking-wider font-medium mb-1">Currency</p>
-                                <p className="text-xs text-white/60">{tx.currency || 'USD'}</p>
+                                <p className="text-[10px] text-white/20 uppercase tracking-wider font-medium mb-1">Currency</p>
+                                <p className="text-[11px] text-white/40">{tx.currency || 'USD'}</p>
                               </div>
                             </div>
                           </div>
@@ -246,12 +251,10 @@ export default function TransactionsPage() {
           </div>
 
           {filtered.length === 0 && (
-            <div className="text-center py-16">
-              <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mx-auto mb-3">
-                <Search className="w-6 h-6 text-white/15" />
-              </div>
-              <h3 className="text-base font-bold text-white/30 mb-1">No Transactions Found</h3>
-              <p className="text-xs text-white/15">
+            <div className="flex flex-col items-center justify-center py-20">
+              <Activity className="w-8 h-8 text-white/[0.06] mb-3" />
+              <h3 className="text-[14px] font-semibold text-white/20 mb-1">No Transactions Found</h3>
+              <p className="text-[11px] text-white/10">
                 {searchQuery ? `No results for "${searchQuery}"` : 'Your transaction history will appear here.'}
               </p>
             </div>

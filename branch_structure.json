@@ -1,0 +1,18 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "docs/readme-standardization",
+    "main",
+    "origin"
+  ],
+  "parent": {
+    "docs/readme-standardization": "main",
+    "main": null,
+    "origin": "main"
+  },
+  "order": [
+    "main",
+    "docs/readme-standardization",
+    "origin"
+  ]
+}
